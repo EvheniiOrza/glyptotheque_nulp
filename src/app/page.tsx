@@ -9,6 +9,7 @@ import supabase from '@/utils/supabaseClient'
 
 const HomePage: React.FC = () => {
     const [artworks, setArtworks] = useState<Artwork[]>([])
+
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {

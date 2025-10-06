@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '@/components/layout/Layout'
 import ArtworkGrid from '@/components/Gallery/ArtworkGrid'
-import { Artwork } from '@/types/artwork'
 import supabase from '@/utils/supabaseClient'
 import Loader from '@/components/Admin/Loader'
+import { Artwork } from '@/types/artwork'
 
 const GalleryPage: React.FC = () => {
     const [artworks, setArtworks] = useState<Artwork[]>([])
@@ -15,13 +15,14 @@ const GalleryPage: React.FC = () => {
         const fetchArtworks = async () => {
             const { data, error } = await supabase
                 .from('artworks')
-                .select('id, title, images') // images - масив фото
+                .select('id, title, description, image_urls') // image_urls - масив фото
             if (error) console.error(error)
-            else {
-                const mapped = data.map((item) => ({
+            else if (data) {
+                const mapped = data.map((item: any) => ({
                     id: item.id,
                     title: item.title,
-                    image: item.images?.[0] || '/placeholder.jpg',
+                    description: item.description || '', // замінюємо undefined на порожній рядок
+                    imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
                 }))
                 setArtworks(mapped)
             }
