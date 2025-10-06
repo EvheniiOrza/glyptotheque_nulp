@@ -8,13 +8,27 @@ import { v4 as uuidv4 } from 'uuid'
 import { ArtworkFormData } from '@/types/artwork'
 
 const AddArtworkPage: React.FC = () => {
-    const handleSubmit = async (data: ArtworkFormData) => {
-        const { name, author, year, description, photos, qr_url } = data
+    // Адаптер для даних з форми
+    const handleFormSubmit = async (data: {
+        title: string
+        description: string
+        photos: File[]
+        characteristics: Record<string, string>
+    }) => {
+        // Приводимо до ArtworkFormData
+        const formData: ArtworkFormData = {
+            name: data.title,
+            description: data.description,
+            photos: data.photos,
+            author: data.characteristics?.author,
+            year: data.characteristics?.year ? Number(data.characteristics.year) : undefined,
+            qr_url: data.characteristics?.qr_url,
+        }
 
         try {
             const uploadedUrls: string[] = []
 
-            for (const photo of photos) {
+            for (const photo of formData.photos) {
                 const fileExt = photo.name.split('.').pop()
                 const fileName = `${uuidv4()}.${fileExt}`
 
@@ -34,20 +48,19 @@ const AddArtworkPage: React.FC = () => {
             const { data: insertData, error: insertError } = await supabase
                 .from('sculptures')
                 .insert({
-                    name,
-                    author,
-                    year,
-                    description,
+                    name: formData.name,
+                    author: formData.author,
+                    year: formData.year,
+                    description: formData.description,
                     image_urls: uploadedUrls,
-                    qr_url,
-                    created_at: new Date()
+                    qr_url: formData.qr_url,
+                    created_at: new Date(),
                 })
 
             if (insertError) throw insertError
 
             alert('Скульптура успішно додана!')
         } catch (err: unknown) {
-            // Безпечний спосіб обробки unknown
             if (err instanceof Error) {
                 console.error(err.message)
             } else {
@@ -63,7 +76,7 @@ const AddArtworkPage: React.FC = () => {
                 <h1 className="text-4xl font-serif text-[#d4af37] mb-8 text-center">
                     Додати нову скульптуру
                 </h1>
-                <ArtworkForm onSubmit={handleSubmit} />
+                <ArtworkForm onSubmit={handleFormSubmit} />
             </div>
         </Layout>
     )
