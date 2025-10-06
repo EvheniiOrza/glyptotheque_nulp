@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { QrReader } from 'react-qr-reader'
+import { QrReader } from '@blackbox-vision/react-qr-reader'
 import { useRouter } from 'next/navigation'
 
 const QRScanner: React.FC = () => {
@@ -13,15 +13,17 @@ const QRScanner: React.FC = () => {
             <div className="w-full max-w-xs rounded overflow-hidden">
                 <QrReader
                     onResult={(res, err) => {
-                        if (!!res) {
-                            const text = res.getText()
+                        if (res?.text) {
+                            const text = res.text
                             setResult(text)
+
                             // автоматичний перехід якщо URL веде на /gallery/[id]
                             if (text.includes('/gallery/')) {
-                                router.push(text.replace(window.location.origin, ''))
+                                const path = text.replace(window.location.origin, '')
+                                router.push(path)
                             }
                         }
-                        if (!!err) {
+                        if (err) {
                             console.error(err)
                         }
                     }}
