@@ -20,11 +20,12 @@ const GalleryPage: React.FC = () => {
             else if (data) {
                 const mapped = data.map((item: any) => ({
                     id: item.id,
-                    title: item.title,
-                    description: item.description || '', // замінюємо undefined на порожній рядок
+                    title: item.title || item.name,        // fallback на name
+                    description: item.description || '',   // замінюємо undefined на ''
                     imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
                 }))
                 setArtworks(mapped)
+
             }
             setLoading(false)
         }

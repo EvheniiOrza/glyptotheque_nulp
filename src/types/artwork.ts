@@ -10,7 +10,13 @@ export interface ArtworkFormData {
 export interface Artwork {
     id: string
     title: string
-    description: string  // обов'язкове
+    description: string // робимо обов’язковим, щоб TS не скаржився
     imageUrl: string
 }
 
+interface ArtworkCardProps {
+    title: string
+    description: string
+    imageUrl: string
+    onClick?: () => void
+}
