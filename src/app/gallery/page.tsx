@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react'
 import Layout from '@/components/layout/Layout'
-import Hero from '@/components/Home/Hero'
-import FeaturedArtworks from '@/components/Home/FeaturedArtworks'
+import ArtworkGrid from '@/components/Gallery/ArtworkGrid'
 import { Artwork } from '@/types/artwork'
 import supabase from '@/utils/supabaseClient'
+import Loader from '@/components/Admin/Loader'
 
-const HomePage: React.FC = () => {
+const GalleryPage: React.FC = () => {
     const [artworks, setArtworks] = useState<Artwork[]>([])
     const [loading, setLoading] = useState(true)
 
@@ -15,8 +15,7 @@ const HomePage: React.FC = () => {
         const fetchArtworks = async () => {
             const { data, error } = await supabase
                 .from('artworks')
-                .select('id, title, images') // images - масив або перше фото
-                .limit(6) // популярні скульптури
+                .select('id, title, images') // images - масив фото
             if (error) console.error(error)
             else {
                 const mapped = data.map((item) => ({
@@ -34,16 +33,20 @@ const HomePage: React.FC = () => {
 
     return (
         <Layout>
-            <Hero />
-            {loading ? (
-                <div className="flex justify-center py-20">
-                    <p className="text-gray-500">Завантаження популярних скульптур...</p>
-                </div>
-            ) : (
-                <FeaturedArtworks artworks={artworks} />
-            )}
+            <main className="bg-black text-white min-h-screen py-16">
+                <h1 className="text-4xl md:text-5xl font-serif text-[#d4af37] text-center mb-12">
+                    Галерея скульптур
+                </h1>
+                {loading ? (
+                    <div className="flex justify-center py-20">
+                        <Loader />
+                    </div>
+                ) : (
+                    <ArtworkGrid artworks={artworks} />
+                )}
+            </main>
         </Layout>
     )
 }
 
-export default HomePage
+export default GalleryPage
