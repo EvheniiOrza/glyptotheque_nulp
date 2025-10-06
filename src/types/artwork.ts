@@ -1,9 +1,8 @@
-export interface Artwork {
-    id: string
+export interface ArtworkFormData {
     name: string
     author?: string
     year?: number
     description?: string
-    image_urls: string[]
+    photos: File[]
     qr_url?: string
 }
