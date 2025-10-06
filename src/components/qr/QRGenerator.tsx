@@ -1,16 +1,14 @@
 'use client'
 
 import React from 'react'
-import QRCode from 'react-qr-code' // ✅ бібліотека для генерації QR-кодів
+import QRCode from 'react-qr-code'
 
 interface QRGeneratorProps {
     artworkId: string
 }
 
 const QRGenerator: React.FC<QRGeneratorProps> = ({ artworkId }) => {
-    // Безпечно отримуємо origin (тільки в браузері)
-    const origin =
-        typeof window !== 'undefined' ? window.location.origin : ''
+    const origin = typeof window !== 'undefined' ? window.location.origin : ''
     const url = `${origin}/gallery/${artworkId}`
 
     return (
