@@ -20,10 +20,11 @@ const HomePage: React.FC = () => {
                 .limit(6) // популярні скульптури
             if (error) console.error(error)
             else {
-                const mapped = data.map((item) => ({
+                const mapped = data.map((item: any) => ({
                     id: item.id,
                     title: item.title,
-                    image: item.images?.[0] || '/placeholder.jpg',
+                    description: item.description || '', // замінюємо undefined на порожній рядок
+                    imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
                 }))
                 setArtworks(mapped)
             }
