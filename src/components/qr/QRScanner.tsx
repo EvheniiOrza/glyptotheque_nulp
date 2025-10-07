@@ -1,20 +1,21 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { Camera, type CameraType } from 'react-camera-pro'
+import { Camera } from 'react-camera-pro'
 import jsQR from 'jsqr'
 import { useRouter } from 'next/navigation'
 
 const QRScanner: React.FC = () => {
-    // правильний тип для ref
-    const cameraRef = useRef<CameraType | null>(null)
+    const cameraRef = useRef<any>(null)
     const [result, setResult] = useState<string>('')
     const router = useRouter()
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const photo = cameraRef.current?.takePhoto()
-            if (!photo || typeof photo !== 'string') return // ✅ перевірка типу
+            if (!cameraRef.current) return
+
+            const photo = cameraRef.current.takePhoto()
+            if (!photo || typeof photo !== 'string') return
 
             const img = new Image()
             img.src = photo
@@ -24,13 +25,19 @@ const QRScanner: React.FC = () => {
                 canvas.height = img.height
                 const ctx = canvas.getContext('2d')
                 if (!ctx) return
+
                 ctx.drawImage(img, 0, 0)
                 const imageData = ctx.getImageData(0, 0, img.width, img.height)
                 const code = jsQR(imageData.data, img.width, img.height)
+
                 if (code?.data) {
                     setResult(code.data)
+
+                    // Перевіряємо, чи це посилання на галерею
                     if (code.data.includes('/gallery/')) {
-                        const path = code.data.replace(window.location.origin, '')
+                        // Вилучаємо шлях з повного URL
+                        const url = new URL(code.data)
+                        const path = url.pathname
                         router.push(path)
                     }
                 }
@@ -57,13 +64,13 @@ const QRScanner: React.FC = () => {
             </div>
 
             {result && (
-                <div className="bg-black/70 p-2 rounded text-gold w-full text-center font-body">
+                <div className="bg-black/70 p-2 rounded text-[#d4af37] w-full text-center font-body">
                     Розпізнано: {result}
                 </div>
             )}
 
             <button
-                className="px-4 py-2 bg-gold text-black rounded-md font-semibold hover:brightness-110 transition"
+                className="px-4 py-2 bg-[#d4af37] text-black rounded-md font-semibold hover:brightness-110 transition"
                 onClick={() => setResult('')}
             >
                 Очистити

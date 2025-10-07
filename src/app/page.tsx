@@ -13,6 +13,8 @@ interface SupabaseArtwork {
     name?: string | null
     description?: string | null
     image_urls?: string[] | null
+    author?: string | null
+    year?: number | null
 }
 
 const HomePage: React.FC = () => {
@@ -21,24 +23,29 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         const fetchArtworks = async () => {
-            const { data, error } = await supabase
-                .from('sculptures')
-                .select('id, name, description, image_urls')
-                .limit(6)
+            try {
+                const { data, error } = await supabase
+                    .from('sculptures')
+                    .select('id, name, description, image_urls, author, year')
+                    .order('created_at', { ascending: false })
+                    .limit(6)
 
-            if (error) {
-                console.error(error)
-            } else if (data) {
-                const mapped = data.map((item: SupabaseArtwork): Artwork => ({
-                    id: item.id,
-                    title: item.title || item.name || 'Без назви',
-                    description: item.description || '',
-                    imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
-                }))
-                setArtworks(mapped)
+                if (error) {
+                    console.error('Помилка завантаження скульптур:', error)
+                } else if (data) {
+                    const mapped = data.map((item: SupabaseArtwork): Artwork => ({
+                        id: item.id,
+                        title: item.title || item.name || 'Без назви',
+                        description: item.description || '',
+                        imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
+                    }))
+                    setArtworks(mapped)
+                }
+            } catch (error) {
+                console.error('Помилка:', error)
+            } finally {
+                setLoading(false)
             }
-
-            setLoading(false)
         }
 
         fetchArtworks()
@@ -49,7 +56,10 @@ const HomePage: React.FC = () => {
             <Hero />
             {loading ? (
                 <div className="flex justify-center py-20">
-                    <p className="text-gray-500">Завантаження популярних скульптур...</p>
+                    <div className="text-center">
+                        <div className="w-16 h-16 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                        <p className="text-gray-500">Завантаження скульптур...</p>
+                    </div>
                 </div>
             ) : (
                 <FeaturedArtworks artworks={artworks} />

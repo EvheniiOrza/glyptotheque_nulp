@@ -11,3 +11,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
     @apply font-sans text-black;
 }
+/* Drag and drop styles */
+.drag-over {
+    border-color: #d4af37;
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* Smooth transitions */
+.transition {
+    transition: all 0.2s ease-in-out;
+}
