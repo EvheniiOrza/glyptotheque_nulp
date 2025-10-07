@@ -7,28 +7,37 @@ import FeaturedArtworks from '@/components/Home/FeaturedArtworks'
 import { Artwork } from '@/types/artwork'
 import supabase from '@/utils/supabaseClient'
 
+interface SupabaseArtwork {
+    id: string
+    title?: string | null
+    name?: string | null
+    description?: string | null
+    image_urls?: string[] | null
+}
+
 const HomePage: React.FC = () => {
     const [artworks, setArtworks] = useState<Artwork[]>([])
-
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchArtworks = async () => {
             const { data, error } = await supabase
-                .from('artworks')
-                .select('id, title, images') // images - масив або перше фото
-                .limit(6) // популярні скульптури
-            if (error) console.error(error)
-            else {
-                const mapped = data.map((item: any) => ({
+                .from('sculptures')
+                .select('id, name, description, image_urls')
+                .limit(6)
+
+            if (error) {
+                console.error(error)
+            } else if (data) {
+                const mapped = data.map((item: SupabaseArtwork): Artwork => ({
                     id: item.id,
-                    title: item.title || item.name,        // fallback на name
-                    description: item.description || '',   // замінюємо undefined на ''
+                    title: item.title || item.name || 'Без назви',
+                    description: item.description || '',
                     imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
                 }))
                 setArtworks(mapped)
-
             }
+
             setLoading(false)
         }
 
