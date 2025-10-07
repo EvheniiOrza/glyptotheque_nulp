@@ -40,16 +40,18 @@ const GalleryPage: React.FC = () => {
     return (
         <Layout>
             <main className="bg-black text-white min-h-screen py-16">
-                <h1 className="text-4xl md:text-5xl font-sans text-gold text-center mb-12">
-                    Галерея скульптур
-                </h1>
-                {loading ? (
-                    <div className="flex justify-center py-20">
-                        <Loader />
-                    </div>
-                ) : (
-                    <ArtworkGrid artworks={artworks} />
-                )}
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 className="text-4xl md:text-5xl font-sans text-gold text-center mb-12">
+                        Галерея скульптур
+                    </h1>
+                    {loading ? (
+                        <div className="flex justify-center py-20">
+                            <Loader />
+                        </div>
+                    ) : (
+                        <ArtworkGrid artworks={artworks} />
+                    )}
+                </div>
             </main>
         </Layout>
     )

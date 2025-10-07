@@ -12,7 +12,7 @@ const Interview: React.FC = () => {
             </h1>
 
             <Section
-                title="Про: Олега Рибчинського"
+                title="Коротко про співрозмовника"
                 initiallyOpen
                 content={
                     <div className="space-y-6 text-white font-body leading-relaxed">
