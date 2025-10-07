@@ -49,7 +49,6 @@ h1, h2, h3, h4, h5, h6 {
 .prose-invert strong {
     color: #f4ddca;
 }
-
 /* Заборонити горизонтальну прокрутку на всіх сторінках */
 html, body {
     max-width: 100%;
@@ -62,7 +61,7 @@ html, body {
 }
 
 /* Заборонити горизонтальну прокрутку для конкретних контейнерів */
-.container, .mx-auto, .max-w-* {
+.container, .mx-auto {
     max-width: 100%;
 }
 
