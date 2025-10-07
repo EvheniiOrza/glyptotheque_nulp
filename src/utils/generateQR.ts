@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient'
+import supabase from './supabaseClient'
 import QRCode from 'qrcode'
 
 export async function saveQRToSupabase(sculptureId: string) {
@@ -8,11 +8,25 @@ export async function saveQRToSupabase(sculptureId: string) {
     const fileName = `qr_${sculptureId}.png`
     const buffer = Buffer.from(dataUrl.split(',')[1], 'base64')
 
-    await supabase.storage.from('qrcodes').upload(fileName, buffer, {
-        contentType: 'image/png',
-        upsert: true
-    })
+    // Завантаження файлу в сховище Supabase
+    const { error: uploadError } = await supabase.storage
+        .from('qrcodes')
+        .upload(fileName, buffer, {
+            contentType: 'image/png',
+            upsert: true,
+        })
+    if (uploadError) throw uploadError
 
-    const { data: publicUrlData } = supabase.storage.from('qrcodes').getPublicUrl(fileName)
-    await supabase.from('sculptures').update({ qr_url: publicUrlData.publicUrl }).eq('id', sculptureId)
+    // Отримання публічного URL
+    const { data: publicUrlData } = supabase.storage
+        .from('qrcodes')
+        .getPublicUrl(fileName)
+    const publicUrl = publicUrlData?.publicUrl
+
+    // Оновлення запису в таблиці sculptures
+    const { error: updateError } = await supabase
+        .from('sculptures')
+        .update({ qr_url: publicUrl })
+        .eq('id', sculptureId)
+    if (updateError) throw updateError
 }
