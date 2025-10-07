@@ -8,7 +8,7 @@ const QRPage: React.FC = () => {
     return (
         <Layout>
             <main className="bg-black min-h-screen text-white py-16 px-4">
-                <h1 className="text-4xl font-serif text-[#d4af37] text-center mb-12">
+                <h1 className="text-4xl font-sans text-gold text-center mb-12">
                     Сканер QR
                 </h1>
 

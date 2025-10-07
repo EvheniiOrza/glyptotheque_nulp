@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
-                className="text-5xl md:text-6xl font-serif text-[#d4af37] mb-6"
+                className="text-5xl md:text-6xl font-sans text-gold mb-6"
             >
                 Glyptotheque NULP
             </motion.h1>
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="text-gray-300 max-w-2xl mb-10"
+                className="text-lg md:text-xl max-w-3xl mx-auto mb-8 font-body text-gray-100"
             >
                 Віртуальний каталог скульптур та витворів мистецтва. Досліджуй, надихайся та переходь по QR-кодах до детальної інформації про кожен витвір.
             </motion.p>
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 1 }}
-                className="flex space-x-4"
+                className="flex flex-col sm:flex-row gap-4 justify-center"
             >
                 <Button onClick={() => router.push('/gallery')}>Перейти до Галереї</Button>
                 <Button variant="gold" onClick={() => router.push('/interview')}>

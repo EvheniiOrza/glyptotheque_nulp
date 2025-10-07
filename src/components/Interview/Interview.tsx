@@ -8,7 +8,7 @@ import Quote from './Quote'
 const Interview: React.FC = () => {
     return (
         <Container className="py-16">
-            <h1 className="text-4xl md:text-5xl font-serif text-[#d4af37] mb-12 text-center">
+            <h1 className="text-4xl md:text-5xl font-sans text-gold mb-12 text-center">
                 Інтерв’ю з мистецтвознавцем
             </h1>
 

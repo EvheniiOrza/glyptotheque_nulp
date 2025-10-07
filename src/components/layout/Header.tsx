@@ -22,28 +22,28 @@ const Header = () => {
         >
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Лого */}
-                <Link href="/" className="text-2xl font-serif text-[#d4af37] tracking-widest">
+                <Link href="/" className="text-2xl font-sans text-gold tracking-widest">
                     Glyptotheque
                 </Link>
 
                 {/* Меню */}
-                <nav className="space-x-8 hidden md:flex text-sm uppercase text-white">
-                    <Link href="/" className="hover:text-[#d4af37] transition-colors">
+                <nav className="space-x-8 hidden md:flex text-sm uppercase text-gray-100">
+                    <Link href="/" className="hover:text-gold transition-colors">
                         Головна
                     </Link>
-                    <Link href="/gallery" className="hover:text-[#d4af37] transition-colors">
+                    <Link href="/gallery" className="hover:text-gold transition-colors">
                         Галерея
                     </Link>
-                    <Link href="/blog" className="hover:text-[#d4af37] transition-colors">
+                    <Link href="/interview" className="hover:text-gold transition-colors">
                         Інтерв’ю
                     </Link>
-                    <Link href="/about" className="hover:text-[#d4af37] transition-colors">
+                    <Link href="/about" className="hover:text-gold transition-colors">
                         Про нас
                     </Link>
                 </nav>
 
                 {/* Соцмережі */}
-                <div className="flex items-center space-x-4 text-[#d4af37]">
+                <div className="flex items-center space-x-4 text-gold">
                     <a href="#" aria-label="Instagram" className="hover:text-white transition">
                         <i className="fa-brands fa-instagram"></i>
                     </a>

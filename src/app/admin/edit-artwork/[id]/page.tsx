@@ -12,7 +12,8 @@ import { v4 as uuidv4 } from 'uuid'
 const EditArtworkPage: React.FC = () => {
     const params = useParams()
     const router = useRouter()
-    const { id } = params
+    const { id } = params as { id: string }
+
     const [artworkData, setArtworkData] = useState<ArtworkFormData | null>(null)
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
@@ -24,19 +25,21 @@ const EditArtworkPage: React.FC = () => {
                 .select('*')
                 .eq('id', id)
                 .single()
+
             if (error) console.error(error)
-            else {
+            else if (data) {
                 setArtworkData({
                     name: data.name,
                     description: data.description || '',
                     author: data.author || '',
                     year: data.year || undefined,
-                    photos: [], // нові фото поки порожні
+                    photos: [],
                     qr_url: data.qr_url || '',
                 })
             }
             setLoading(false)
         }
+
         fetchArtwork()
     }, [id])
 
@@ -53,15 +56,19 @@ const EditArtworkPage: React.FC = () => {
                 const { error: uploadError } = await supabase.storage
                     .from('artworks')
                     .upload(fileName, photo)
+
                 if (uploadError) throw uploadError
 
                 const { data: publicUrlData } = supabase.storage
                     .from('artworks')
                     .getPublicUrl(fileName)
-                uploadedUrls.push(publicUrlData.publicUrl)
+
+                if (publicUrlData?.publicUrl) {
+                    uploadedUrls.push(publicUrlData.publicUrl)
+                }
             }
 
-            // Отримуємо старі фото та додаємо нові
+            // Отримуємо старі фото
             const { data: existingArtwork } = await supabase
                 .from('sculptures')
                 .select('image_urls')
@@ -86,8 +93,8 @@ const EditArtworkPage: React.FC = () => {
             if (updateError) throw updateError
 
             alert('Скульптуру успішно оновлено!')
-            router.push('/admin') // повернення до списку
-        } catch (err: unknown) {
+            router.push('/admin')
+        } catch (err) {
             console.error(err)
             alert('Сталася помилка при оновленні скульптури.')
         } finally {
@@ -95,14 +102,35 @@ const EditArtworkPage: React.FC = () => {
         }
     }
 
-    if (loading) return <Layout><div className="py-40 flex justify-center"><Loader /></div></Layout>
-    if (!artworkData) return <Layout><div className="py-40 text-red-500 text-center">Скульптуру не знайдено.</div></Layout>
+    if (loading)
+        return (
+            <Layout>
+                <div className="py-40 flex justify-center">
+                    <Loader />
+                </div>
+            </Layout>
+        )
+
+    if (!artworkData)
+        return (
+            <Layout>
+                <div className="py-40 text-red-500 text-center">
+                    Скульптуру не знайдено.
+                </div>
+            </Layout>
+        )
 
     return (
         <Layout>
             <div className="py-16 px-4 max-w-4xl mx-auto">
-                <h1 className="text-4xl font-serif text-[#d4af37] mb-8 text-center">Редагувати скульптуру</h1>
-                <ArtworkForm initialData={artworkData} onSubmit={handleSubmit} saving={saving} />
+                <h1 className="text-4xl font-serif text-[#d4af37] mb-8 text-center">
+                    Редагувати скульптуру
+                </h1>
+                <ArtworkForm
+                    initialData={artworkData}
+                    onSubmit={handleSubmit}
+                    saving={saving}
+                />
             </div>
         </Layout>
     )

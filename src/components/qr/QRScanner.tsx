@@ -41,19 +41,19 @@ const QRScanner: React.FC = () => {
     }, [router])
 
     return (
-        <div className="flex flex-col items-center space-y-4 p-6 bg-zinc-900 rounded-2xl border border-zinc-800">
+        <div className="flex flex-col items-center space-y-4 p-6 bg-black border border-gray-800 rounded-2xl">
             <div className="w-full max-w-xs rounded overflow-hidden">
                 <Camera ref={camera} aspectRatio={1} facingMode="environment" />
             </div>
 
             {result && (
-                <div className="bg-black/70 p-2 rounded text-[#d4af37] w-full text-center">
+                <div className="bg-black/70 p-2 rounded text-gold w-full text-center font-body">
                     Розпізнано: {result}
                 </div>
             )}
 
             <button
-                className="px-4 py-2 bg-[#d4af37] text-black rounded-md font-semibold hover:brightness-110 transition"
+                className="px-4 py-2 bg-gold text-black rounded-md font-semibold hover:brightness-110 transition"
                 onClick={() => setResult('')}
             >
                 Очистити

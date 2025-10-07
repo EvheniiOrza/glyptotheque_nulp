@@ -8,64 +8,47 @@ import { v4 as uuidv4 } from 'uuid'
 import { ArtworkFormData } from '@/types/artwork'
 
 const AddArtworkPage: React.FC = () => {
-    // Адаптер для даних з форми
-    const handleFormSubmit = async (data: {
-        title: string
-        description: string
-        photos: File[]
-        characteristics: Record<string, string>
-    }) => {
-        // Приводимо до ArtworkFormData
-        const formData: ArtworkFormData = {
-            name: data.title,
-            description: data.description,
-            photos: data.photos,
-            author: data.characteristics?.author,
-            year: data.characteristics?.year ? Number(data.characteristics.year) : undefined,
-            qr_url: data.characteristics?.qr_url,
+    const handleFormSubmit = async (data: ArtworkFormData) => {
+        if (!data.name?.trim()) {
+            alert('Будь ласка, введіть назву скульптури')
+            return
         }
 
         try {
             const uploadedUrls: string[] = []
 
-            for (const photo of formData.photos) {
+            // Завантаження фото на Supabase Storage
+            for (const photo of data.photos) {
                 const fileExt = photo.name.split('.').pop()
                 const fileName = `${uuidv4()}.${fileExt}`
 
-                // Завантаження фото на Supabase Storage
-                const { data: uploadData, error: uploadError } = await supabase.storage
+                const { error: uploadError } = await supabase.storage
                     .from('artworks')
-                    .upload(fileName, photo)
-
+                    .upload(fileName, photo, { cacheControl: '3600', upsert: true })
                 if (uploadError) throw uploadError
 
-                // Отримання публічного URL
                 const { data: publicUrlData } = supabase.storage.from('artworks').getPublicUrl(fileName)
+                if (!publicUrlData?.publicUrl) throw new Error('Не вдалося отримати URL')
                 uploadedUrls.push(publicUrlData.publicUrl)
             }
 
             // Вставка запису у таблицю sculptures
-            const { data: insertData, error: insertError } = await supabase
+            const { error: insertError } = await supabase
                 .from('sculptures')
                 .insert({
-                    name: formData.name,
-                    author: formData.author,
-                    year: formData.year,
-                    description: formData.description,
-                    image_urls: uploadedUrls,
-                    qr_url: formData.qr_url,
-                    created_at: new Date(),
+                    name: data.name,
+                    author: data.author || undefined,
+                    year: data.year || undefined,
+                    description: data.description,
+                    image_urls: uploadedUrls.length ? uploadedUrls : undefined,
+                    created_at: new Date().toISOString(),
                 })
 
             if (insertError) throw insertError
 
             alert('Скульптура успішно додана!')
         } catch (err: unknown) {
-            if (err instanceof Error) {
-                console.error(err.message)
-            } else {
-                console.error(err)
-            }
+            console.error(err)
             alert('Сталася помилка при додаванні скульптури.')
         }
     }

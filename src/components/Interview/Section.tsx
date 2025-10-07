@@ -13,10 +13,10 @@ const Section: React.FC<SectionProps> = ({ title, content, initiallyOpen = false
     const [open, setOpen] = useState(initiallyOpen)
 
     return (
-        <div className="mb-6 border-b border-zinc-800 pb-4">
+        <div className="mb-6 border-b border-gray-800 pb-4">
             <button
                 onClick={() => setOpen(!open)}
-                className="w-full text-left text-[#d4af37] font-serif text-xl mb-2 flex justify-between items-center"
+                className="w-full text-left text-gold font-sans text-xl mb-2 flex justify-between items-center"
             >
                 {title}
                 <span className="ml-2">{open ? '−' : '+'}</span>
@@ -30,7 +30,7 @@ const Section: React.FC<SectionProps> = ({ title, content, initiallyOpen = false
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <p className="text-gray-300 leading-relaxed mt-2">{content}</p>
+                        <p className="text-gray-100 leading-relaxed mt-2 font-body">{content}</p>
                     </motion.div>
                 )}
             </AnimatePresence>

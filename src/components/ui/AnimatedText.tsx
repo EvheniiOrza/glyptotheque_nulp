@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import React from 'react'
+import styles from './AnimatedText.module.scss'
 
 interface AnimatedTextProps {
     text: string
@@ -16,7 +17,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', delay
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay }}
             viewport={{ once: true }}
-            className={`text-[#d4af37] font-serif tracking-wide ${className}`}
+            className={`${styles.animatedText} ${className}`}
         >
             {text}
         </motion.h2>

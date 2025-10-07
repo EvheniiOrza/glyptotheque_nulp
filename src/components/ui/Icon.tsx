@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { LucideIcon } from 'lucide-react'
+import styles from './Icon.module.scss'
 
 interface IconProps {
     icon: LucideIcon
@@ -10,7 +11,7 @@ interface IconProps {
 }
 
 const Icon: React.FC<IconProps> = ({ icon: IconComponent, size = 20, className = '' }) => {
-    return <IconComponent size={size} className={`text-[#d4af37] ${className}`} />
+    return <IconComponent size={size} className={`${styles.icon} ${className}`} />
 }
 
 export default Icon

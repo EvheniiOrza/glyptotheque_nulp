@@ -8,23 +8,36 @@ interface ButtonProps {
     onClick?: () => void
     variant?: 'gold' | 'dark'
     className?: string
-    type?: 'button' | 'submit' | 'reset'  // додано
+    type?: 'button' | 'submit' | 'reset'
+    disabled?: boolean // ✅ додано
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, variant = 'gold', className = '', type = 'button' }) => {
-    const base = 'px-6 py-2 uppercase tracking-widest text-sm font-medium rounded-full transition-all duration-300'
+const Button: React.FC<ButtonProps> = ({
+                                           children,
+                                           onClick,
+                                           variant = 'gold',
+                                           className = '',
+                                           type = 'button',
+                                           disabled = false, // ✅ дефолтне значення
+                                       }) => {
+    const base =
+        'px-6 py-2 uppercase tracking-widest text-sm font-medium rounded-full transition-all duration-300 border'
+
     const styles =
         variant === 'gold'
-            ? 'bg-[#d4af37] text-black hover:bg-black hover:text-[#d4af37] border border-[#d4af37]'
-            : 'bg-black text-[#d4af37] hover:bg-[#d4af37] hover:text-black border border-[#d4af37]'
+            ? 'bg-gold text-black border-gold hover:bg-black hover:text-gold'
+            : 'bg-black text-gold border-gold hover:bg-gold hover:text-black'
 
     return (
         <motion.button
-            type={type}           // передаємо type
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onClick}
-            className={`${base} ${styles} ${className}`}
+            type={type}
+            whileHover={!disabled ? { scale: 1.05 } : {}}
+            whileTap={!disabled ? { scale: 0.95 } : {}}
+            onClick={!disabled ? onClick : undefined}
+            disabled={disabled} // ✅ передаємо в DOM
+            className={`${base} ${styles} ${className} ${
+                disabled ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
         >
             {children}
         </motion.button>

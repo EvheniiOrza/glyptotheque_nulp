@@ -9,9 +9,9 @@ interface QuoteProps {
 
 const Quote: React.FC<QuoteProps> = ({ text, author }) => {
     return (
-        <blockquote className="border-l-4 border-[#d4af37] pl-4 italic text-gray-200 my-6">
-            <p className="text-[#d4af37]">“{text}”</p>
-            {author && <span className="block mt-1 text-sm text-gray-400">— {author}</span>}
+        <blockquote className="border-l-4 border-gold pl-4 italic text-gray-100 my-6">
+            <p className="text-gold">“{text}”</p>
+            {author && <span className="block mt-1 text-sm text-gray-300">— {author}</span>}
         </blockquote>
     )
 }

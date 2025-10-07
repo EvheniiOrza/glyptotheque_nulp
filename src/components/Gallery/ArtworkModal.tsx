@@ -1,21 +1,23 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '../ui/Button'
 
 interface ArtworkModalProps {
     isOpen: boolean
-    artwork: {
-        title: string
-        description: string
-        imageUrl: string
-    } | null
     onClose: () => void
+    images: string[]
+    title?: string
 }
 
-const ArtworkModal: React.FC<ArtworkModalProps> = ({ isOpen, artwork, onClose }) => {
-    if (!artwork) return null
+const ArtworkModal: React.FC<ArtworkModalProps> = ({ isOpen, onClose, images, title }) => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    if (!images || images.length === 0) return null
+
+    const prevImage = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+    const nextImage = () => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
 
     return (
         <AnimatePresence>
@@ -27,15 +29,31 @@ const ArtworkModal: React.FC<ArtworkModalProps> = ({ isOpen, artwork, onClose })
                     exit={{ opacity: 0 }}
                 >
                     <motion.div
-                        className="bg-zinc-900 rounded-2xl max-w-3xl w-full overflow-hidden relative shadow-2xl"
+                        className="bg-black rounded-2xl max-w-3xl w-full overflow-hidden relative shadow-2xl"
                         initial={{ scale: 0.8 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0.8 }}
                     >
-                        <img src={artwork.imageUrl} alt={artwork.title} className="w-full h-96 object-cover" />
-                        <div className="p-6">
-                            <h2 className="text-[#d4af37] font-serif text-2xl mb-2">{artwork.title}</h2>
-                            <p className="text-gray-300 mb-4">{artwork.description}</p>
+                        <img
+                            src={images[currentIndex]}
+                            alt={`Artwork ${currentIndex + 1}`}
+                            className="w-full h-96 object-cover"
+                        />
+
+                        <div className="p-6 flex flex-col space-y-4">
+                            {title && <h2 className="text-gold font-sans text-2xl">{title}</h2>}
+
+                            {images.length > 1 && (
+                                <div className="flex justify-between">
+                                    <Button variant="gold" onClick={prevImage}>
+                                        ← Попереднє
+                                    </Button>
+                                    <Button variant="gold" onClick={nextImage}>
+                                        Наступне →
+                                    </Button>
+                                </div>
+                            )}
+
                             <Button variant="gold" onClick={onClose}>
                                 Закрити
                             </Button>

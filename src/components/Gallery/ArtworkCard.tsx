@@ -16,13 +16,13 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({ title, description, imageUrl,
         <motion.div
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
-            className="bg-zinc-900 border border-zinc-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer"
+            className="bg-black border border-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer"
             onClick={onClick}
         >
             <img src={imageUrl} alt={title} className="w-full h-64 object-cover" />
             <div className="p-4">
-                <h3 className="text-[#d4af37] font-serif text-lg mb-2">{title}</h3>
-                <p className="text-gray-300 text-sm">{description}</p>
+                <h3 className="text-gold font-sans text-lg mb-2">{title}</h3>
+                <p className="text-gray-300 text-sm font-body">{description}</p>
             </div>
         </motion.div>
     )
