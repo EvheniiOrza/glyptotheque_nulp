@@ -21,3 +21,31 @@ h1, h2, h3, h4, h5, h6 {
 .transition {
     transition: all 0.2s ease-in-out;
 }
+
+/* Custom prose styles for better readability */
+.prose {
+    color: inherit;
+}
+
+.prose p {
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+}
+
+.prose strong {
+    color: #f4ddca;
+    font-weight: 600;
+}
+
+.prose-lg {
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.prose-invert {
+    color: #d1d5db;
+}
+
+.prose-invert strong {
+    color: #f4ddca;
+}

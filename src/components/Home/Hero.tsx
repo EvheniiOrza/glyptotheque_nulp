@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 1, delay: 1 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-                <Button onClick={() => router.push('/gallery')}>
+                <Button variant="gold" onClick={() => router.push('/gallery')}>
                     Перейти до Галереї
                 </Button>
                 <Button variant="dark" onClick={() => router.push('/qr')}>
@@ -47,6 +47,9 @@ const Hero: React.FC = () => {
                 </Button>
                 <Button variant="gold" onClick={() => router.push('/interview')}>
                     Інтерв&#39;ю
+                </Button>
+                <Button variant="dark" onClick={() => router.push('/about')}>
+                    Про нас
                 </Button>
             </motion.div>
 
