@@ -115,7 +115,7 @@ export async function saveQRToSupabaseSimple(sculptureId: string): Promise<strin
             margin: 2,
             color: {
                 dark: '#d4af37',
-                light: '#000000'
+                light: '#ffffff'
             }
         })
 
