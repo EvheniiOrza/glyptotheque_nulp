@@ -1,19 +1,20 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { Camera } from 'react-camera-pro'
+import { Camera, type CameraType } from 'react-camera-pro'
 import jsQR from 'jsqr'
 import { useRouter } from 'next/navigation'
 
 const QRScanner: React.FC = () => {
-    const camera = useRef<Camera>(null)
+    // правильний тип для ref
+    const cameraRef = useRef<CameraType | null>(null)
     const [result, setResult] = useState<string>('')
     const router = useRouter()
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const photo = camera.current?.takePhoto()
-            if (!photo) return
+            const photo = cameraRef.current?.takePhoto()
+            if (!photo || typeof photo !== 'string') return // ✅ перевірка типу
 
             const img = new Image()
             img.src = photo
@@ -28,7 +29,6 @@ const QRScanner: React.FC = () => {
                 const code = jsQR(imageData.data, img.width, img.height)
                 if (code?.data) {
                     setResult(code.data)
-                    // автоматичний перехід, якщо URL веде на /gallery/[id]
                     if (code.data.includes('/gallery/')) {
                         const path = code.data.replace(window.location.origin, '')
                         router.push(path)
@@ -43,7 +43,17 @@ const QRScanner: React.FC = () => {
     return (
         <div className="flex flex-col items-center space-y-4 p-6 bg-black border border-gray-800 rounded-2xl">
             <div className="w-full max-w-xs rounded overflow-hidden">
-                <Camera ref={camera} aspectRatio={1} facingMode="environment" />
+                <Camera
+                    ref={cameraRef}
+                    aspectRatio={1}
+                    facingMode="environment"
+                    errorMessages={{
+                        noCameraAccessible: 'Камера не знайдена',
+                        permissionDenied: 'Доступ до камери заборонено',
+                        switchCamera: 'Перемикання камер не підтримується',
+                        canvas: 'Помилка рендеру камери',
+                    }}
+                />
             </div>
 
             {result && (
