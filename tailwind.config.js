@@ -8,20 +8,24 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                gold: "#f4ddca",
-                black: "#0D0D0D",
+                gold: "#f4ecdf", // amber-600 для кнопок
+                black: "#000000", // чорний для тексту
                 white: "#F5F5F5",
                 gray: {
-                    100: "#EDEDED",
-                    300: "#BEBEBE",
-                    500: "#6F6F6F",
-                    800: "#2A2A2A",
+                    100: "#f4ecdf", // основний фон
+                    300: "#d1d5db",
+                    500: "#6B7280",
+                    800: "#1F2937",
                 },
             },
             fontFamily: {
-                sans: ['"Lora"', "serif"],
-                body: ['"Nunito Sans"', "sans-serif"],
+                sans: ['"DXgrafic SemiBold"', "sans-serif"],
+                body: ['"MursGotic - KeyRegular"', "sans-serif"],
+                display: ['"MursGotic - MassiveDemi"', "sans-serif"],
             },
+            backgroundColor: {
+                DEFAULT: "#f4ecdf", // основний бекграунд
+            }
         },
     },
     plugins: [],

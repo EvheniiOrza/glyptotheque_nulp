@@ -53,16 +53,17 @@ const HomePage: React.FC = () => {
 
     return (
         <Layout>
-            <Hero />
             {loading ? (
-                <div className="flex justify-center py-20">
+                <div className="min-h-screen bg-[#f4ecdf] flex items-center justify-center">
                     <div className="text-center">
-                        <div className="w-16 h-16 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                        <p className="text-gray-500">Завантаження скульптур...</p>
+                        <div className="w-16 h-16 border-4 border-amber-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                        <p className="text-gray-600">Завантаження...</p>
                     </div>
                 </div>
             ) : (
-                <FeaturedArtworks artworks={artworks} />
+                <>
+                    <Hero />
+                </>
             )}
         </Layout>
     )

@@ -9,6 +9,7 @@ interface Artwork {
     title: string
     description: string
     imageUrl: string
+    number?: string // Додаємо номер
 }
 
 interface ArtworkGridProps {
@@ -30,6 +31,7 @@ const ArtworkGrid: React.FC<ArtworkGridProps> = ({ artworks }) => {
                     title={artwork.title}
                     description={artwork.description}
                     imageUrl={artwork.imageUrl}
+                    number={artwork.number} // Передаємо номер
                     onClick={() => handleSelect(artwork.id)}
                 />
             ))}

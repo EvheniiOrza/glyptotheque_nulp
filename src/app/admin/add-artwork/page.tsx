@@ -63,12 +63,16 @@ const AddArtworkPage: React.FC = () => {
             }
 
             // Вставка запису у таблицю sculptures
+            // В функції handleFormSubmit оновлюємо insert запит:
             const { data: insertData, error: insertError } = await supabase
                 .from('sculptures')
                 .insert({
                     name: data.name,
                     author: data.author || null,
+                    style: data.style || null,
                     year: data.year || null,
+                    number: data.number || null,
+                    space_id: data.space_id || null, // Додаємо space_id
                     description: data.description,
                     image_urls: uploadedUrls,
                     created_at: new Date().toISOString(),

@@ -10,9 +10,11 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="bg-black text-white font-sans min-h-screen flex flex-col">
+        <div className="bg-[#f4ecdf] text-black font-sans min-h-screen flex flex-col">
             <Header />
-            <main className="flex-1 pt-20">{children}</main>
+            <main className="flex-1 pt-20"> {/* Додаємо padding-top для header */}
+                {children}
+            </main>
             <Footer />
         </div>
     )

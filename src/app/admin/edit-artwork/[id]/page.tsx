@@ -32,7 +32,9 @@ const EditArtworkPage: React.FC = () => {
                     name: data.name,
                     description: data.description || '',
                     author: data.author || '',
+                    style: data.style || '', // Додаємо стиль
                     year: data.year || undefined,
+                    number: data.number || '', // Додаємо номер
                     photos: [],
                     qr_url: data.qr_url || '',
                 })
@@ -84,7 +86,9 @@ const EditArtworkPage: React.FC = () => {
                     name: data.name,
                     description: data.description,
                     author: data.author,
+                    style: data.style, // Додаємо стиль
                     year: data.year,
+                    number: data.number, // Додаємо номер
                     qr_url: data.qr_url,
                     image_urls: allImages,
                 })

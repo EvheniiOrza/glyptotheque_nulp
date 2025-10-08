@@ -12,7 +12,9 @@ interface SculptureDetail {
     id: string
     name: string
     author: string
+    style?: string // Додаємо стиль
     year: number
+    number?: string // Додаємо номер
     description?: string
     image_urls: string[]
     created_at: string
@@ -62,8 +64,8 @@ const SculptureDetailPage: React.FC = () => {
 
     return (
         <Layout>
-            <main className="bg-black text-white min-h-screen py-16 px-6 md:px-12">
-                <h1 className="text-4xl md:text-5xl font-serif text-gold text-center mb-12">
+            <main className="bg-gray-100 text-black min-h-screen py-16 px-6 md:px-12">
+                <h1 className="text-4xl md:text-5xl font-sans text-gold text-center mb-12">
                     {sculpture.name}
                 </h1>
 
@@ -82,22 +84,32 @@ const SculptureDetailPage: React.FC = () => {
                     </div>
 
                     {/* Детальна інформація */}
-                    <div className="flex flex-col space-y-6 text-gray-300 text-lg">
-                        {sculpture.description && (
-                            <div>
-                                <h2 className="text-gold font-semibold mb-2">Опис</h2>
-                                <p className="leading-relaxed">{sculpture.description}</p>
-                            </div>
-                        )}
+                    <div className="flex flex-col space-y-6 text-black text-lg font-body">
                         {sculpture.author && (
                             <p>
-                                <span className="text-gold font-semibold">Автор:</span> {sculpture.author}
+                                <span className="text-black font-sans">Автор:</span> {sculpture.author}
+                            </p>
+                        )}
+                        {sculpture.style && (
+                            <p>
+                                <span className="text-black font-sans">Стиль:</span> {sculpture.style}
                             </p>
                         )}
                         {sculpture.year && (
                             <p>
-                                <span className="text-gold font-semibold">Рік створення:</span> {sculpture.year}
+                                <span className="text-black font-sans">Рік створення:</span> {sculpture.year}
                             </p>
+                        )}
+                        {sculpture.number && (
+                            <p>
+                                <span className="text-black font-sans">Номер:</span> {sculpture.number}
+                            </p>
+                        )}
+                        {sculpture.description && (
+                            <div>
+                                <h2 className="text-black font-sans mb-2">Опис</h2>
+                                <p className="leading-relaxed">{sculpture.description}</p>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -112,7 +124,7 @@ const SculptureDetailPage: React.FC = () => {
                             exit={{ opacity: 0 }}
                         >
                             <motion.div
-                                className="bg-black rounded-2xl max-w-4xl w-full overflow-hidden relative shadow-2xl"
+                                className="bg-gray-100 rounded-2xl max-w-4xl w-full overflow-hidden relative shadow-2xl"
                                 initial={{ scale: 0.8 }}
                                 animate={{ scale: 1 }}
                                 exit={{ scale: 0.8 }}
@@ -120,7 +132,7 @@ const SculptureDetailPage: React.FC = () => {
                                 <img
                                     src={selectedImage}
                                     alt="Велике зображення"
-                                    className="w-full h-[500px] md:h-[700px] object-contain bg-black"
+                                    className="w-full h-[500px] md:h-[700px] object-contain bg-white"
                                 />
                                 <div className="p-6 flex justify-end">
                                     <Button variant="gold" onClick={() => setSelectedImage(null)}>

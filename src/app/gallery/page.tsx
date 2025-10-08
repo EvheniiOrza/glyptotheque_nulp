@@ -17,8 +17,7 @@ const GalleryPage: React.FC = () => {
         const fetchArtworks = async () => {
             const { data, error } = await supabase
                 .from('sculptures')
-                .select('id, name, description, image_urls')
-
+                .select('id, name, description, image_urls, author, style, number')
 
             if (error) console.error(error)
             else if (data) {
@@ -27,6 +26,9 @@ const GalleryPage: React.FC = () => {
                     title: item.name!,
                     description: item.description || '',
                     imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
+                    author: item.author, // Додаємо автора
+                    style: item.style, // Додаємо стиль
+                    number: item.number, // Додаємо номер
                 }))
                 setArtworks(mapped)
             }
@@ -39,9 +41,9 @@ const GalleryPage: React.FC = () => {
 
     return (
         <Layout>
-            <main className="bg-black text-white min-h-screen py-16">
+            <main className="bg-gray-100 text-black min-h-screen py-16">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-4xl md:text-5xl font-sans text-gold text-center mb-12">
+                    <h1 className="text-4xl md:text-5xl font-sans text-black text-center mb-12">
                         Галерея скульптур
                     </h1>
                     {loading ? (

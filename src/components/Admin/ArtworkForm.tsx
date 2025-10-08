@@ -21,7 +21,10 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                                                  }) => {
     const [name, setName] = useState(initialData?.name || '')
     const [author, setAuthor] = useState(initialData?.author || '')
+    const [style, setStyle] = useState(initialData?.style || '')
     const [year, setYear] = useState<number | undefined>(initialData?.year ?? undefined)
+    const [number, setNumber] = useState(initialData?.number || '')
+    const [spaceId, setSpaceId] = useState<number | undefined>(initialData?.space_id ?? undefined)
     const [description, setDescription] = useState(initialData?.description || '')
     const [photos, setPhotos] = useState<File[]>(initialData?.photos || [])
     const [error, setError] = useState('')
@@ -95,11 +98,6 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
             return
         }
 
-        if (!description.trim()) {
-            setError('Будь ласка, введіть опис скульптури')
-            return
-        }
-
         if (photos.length === 0 && existingImages.length === 0) {
             setError('Будь ласка, додайте хоча б одне фото')
             return
@@ -109,7 +107,10 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
         onSubmit?.({
             name: name.trim(),
             author: author.trim() || undefined,
+            style: style.trim() || undefined,
             year,
+            number: number.trim() || undefined,
+            space_id: spaceId,
             description: description.trim(),
             photos,
         })
@@ -139,7 +140,7 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                 />
             </div>
 
-            {/* Автор та Рік в одному рядку */}
+            {/* Автор, Стиль, Рік, Номер */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -151,6 +152,18 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                         className="w-full p-3 rounded-lg bg-zinc-800 text-white border border-zinc-700 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition"
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Стиль
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Стиль скульптури"
+                        className="w-full p-3 rounded-lg bg-zinc-800 text-white border border-zinc-700 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition"
+                        value={style}
+                        onChange={(e) => setStyle(e.target.value)}
                     />
                 </div>
                 <div>
@@ -167,12 +180,45 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                         onChange={(e) => setYear(e.target.value ? Number(e.target.value) : undefined)}
                     />
                 </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Номер
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Номер скульптури"
+                        className="w-full p-3 rounded-lg bg-zinc-800 text-white border border-zinc-700 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value)}
+                    />
+                </div>
+            </div>
+
+            {/* Простір */}
+            <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Простір
+                </label>
+                <select
+                    className="w-full p-3 rounded-lg bg-zinc-800 text-white border border-zinc-700 focus:border-gold focus:ring-1 focus:ring-gold outline-none transition"
+                    value={spaceId ?? ''}
+                    onChange={(e) => setSpaceId(e.target.value ? Number(e.target.value) : undefined)}
+                >
+                    <option value="">Оберіть простір</option>
+                    <option value="1">1 - Велика виставкова зала</option>
+                    <option value="2">2 - Вхідний хол з левами</option>
+                    <option value="3">3 - Скульптурна галерея</option>
+                    <option value="4">4 - Подвір'я - автостоянка</option>
+                    <option value="5">5 - Вхідний хол з Юстицією</option>
+                    <option value="6">6 - Кімната-музей</option>
+                    <option value="7">7 - Нарадча кімната</option>
+                </select>
             </div>
 
             {/* Опис */}
             <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Опис скульптури *
+                    Опис скульптури
                 </label>
                 <textarea
                     placeholder="Детальний опис скульптури..."
