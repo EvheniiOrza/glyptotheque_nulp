@@ -12,7 +12,7 @@ module.exports = {
                 black: "#000000", // чорний для тексту
                 white: "#F5F5F5",
                 gray: {
-                    100: "#f4ecdf", // основний фон
+                    100: "#ffffff", // основний фон
                     300: "#d1d5db",
                     500: "#6B7280",
                     800: "#1F2937",
@@ -24,7 +24,7 @@ module.exports = {
                 display: ['"MursGotic - MassiveDemi"', "sans-serif"],
             },
             backgroundColor: {
-                DEFAULT: "#f4ecdf", // основний бекграунд
+                DEFAULT: "#ffffff", // основний бекграунд
             }
         },
     },

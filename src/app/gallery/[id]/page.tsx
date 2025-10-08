@@ -65,7 +65,7 @@ const SculptureDetailPage: React.FC = () => {
     return (
         <Layout>
             <main className="bg-gray-100 text-black min-h-screen py-16 px-6 md:px-12">
-                <h1 className="text-4xl md:text-5xl font-sans text-gold text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-sans text-black text-center mb-12">
                     {sculpture.name}
                 </h1>
 
@@ -77,7 +77,7 @@ const SculptureDetailPage: React.FC = () => {
                                 key={index}
                                 src={url}
                                 alt={`${sculpture.name} ${index + 1}`}
-                                className="w-full h-72 md:h-96 object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                                className="w-full h-full md:h-96 object-cover rounded-none shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
                                 onClick={() => setSelectedImage(url)}
                             />
                         ))}

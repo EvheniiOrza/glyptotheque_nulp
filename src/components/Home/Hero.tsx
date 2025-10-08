@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <div className="min-h-screen bg-gray-100 text-black">
+        <div className="min-h-screen bg-white text-black">
             {/* Main Content */}
             <main className="pt-28 sm:pt-32 pb-12">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -57,42 +57,6 @@ const Hero: React.FC = () => {
                                 Куратор Львівського тижня скульптури — Павло Гудімов.
                             </p>
                         </motion.div>
-
-                        {/* Другий блок тексту */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.6 }}
-                            className="text-base sm:text-lg leading-relaxed sm:leading-loose"
-                            style={{ fontFamily: 'MursGotic - KeyRegular, sans-serif' }}
-                        >
-                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6" style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}>
-                                Навіщо нам гліптотека?
-                            </h2>
-                            <p className="mb-4 italic text-sm sm:text-base">Діана Клочко</p>
-
-                            <div className="space-y-4 sm:space-y-6">
-                                <p>
-                                    Вперше в історії людства так поставив питання на початку ХІХ століття монарх Людвіг І Баварський. Він був противником Наполеона, але швидко зрозумів думку французького імператора, що велич держави не в останню чергу тримається на колекціях творів давніх цивілізацій.
-                                </p>
-
-                                <p>
-                                    Ймовірно, розуміючи, що його приватна колекція повинна чимось вигідно відрізнятись від інших музейних збірок, що повставали у європейських країнах на основі велетенських монарших і папських зібрань, Людвіг вирішив її оригінально оформити.
-                                </p>
-
-                                <p>
-                                    Усього 14 кімнат мала класицистична будівля, споруджена за проєктом Лео фон Кленце, та чітка структура показу експонатів доби античності – від архаїки близько 650 р.до н.е до пізньоелінського 4 ст. н.е., – швидко перетворили цей невеликий музей на зразковий для вивчення античної скульптури.
-                                </p>
-
-                                <p>
-                                    Після смерті монарха колекція стала державною і продовжувала поповнюватись, до неї почали додавати і ювелірні коштовності доби елінізму, наприклад, т.зв. «діадема Льоба», що походить з Пантікапей, нинішня Керч, яку датують 150 р. до н.е.
-                                </p>
-
-                                <p>
-                                    Мюнхенська Гліптотека у ХІХ столітті була зразком для європейських вчених і туристів, які вивчали історію античної скульптури як основи для кількох стилів сучасності (класицизм, ампір, історизм), та особливо полонила уяву датчан.
-                                </p>
-                            </div>
-                        </motion.div>
                     </div>
 
                     {/* Кнопки дій */}
@@ -105,30 +69,23 @@ const Hero: React.FC = () => {
                         <Button
                             variant="dark"
                             onClick={() => router.push('/gallery')}
-                            className="bg-gray-500 hover:bg-black text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-lg transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            className="bg-gray-500  text-black hover:bg-gray-200 hover:text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
                             Перейти до Галереї
                         </Button>
                         <Button
                             variant="dark"
                             onClick={() => router.push('/place')}
-                            className="bg-gray-500 hover:bg-black text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-lg transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
                             Простори
                         </Button>
                         <Button
                             variant="dark"
                             onClick={() => router.push('/project')}
-                            className="bg-gray-500 hover:bg-black text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-lg transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
                             Про проект
-                        </Button>
-                        <Button
-                            variant="dark"
-                            onClick={() => router.push('/festival')}
-                            className="bg-gray-500 hover:bg-black text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-lg transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
-                        >
-                            Про Фестиваль
                         </Button>
                     </motion.div>
 
@@ -142,14 +99,14 @@ const Hero: React.FC = () => {
                         <Button
                             variant="dark"
                             onClick={() => router.push('/interview')}
-                            className="bg-gray-500 hover:bg-black text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-lg transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
                             Інтерв&#39;ю
                         </Button>
                         <Button
                             variant="dark"
                             onClick={() => router.push('/about')}
-                            className="bg-gray-500 hover:bg-black text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-lg transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
                             Про нас
                         </Button>

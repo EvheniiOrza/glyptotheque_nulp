@@ -19,12 +19,12 @@ const Header = () => {
     }, [])
 
     return (
-        <header className="fixed top-0 w-full z-50 bg-[#f4ecdf] border-b border-gray-300">
+        <header className="max-w-screen fixed top-0 w-full z-50 bg-gray-200 border-b border-gray-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
                 {/* Текст у 3 рядки замість лого */}
                 <Link href="/">
-                <div className="text-center uppercase tracking-wider" style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}>
-                    <div className="text-xs sm:text-sm leading-tight">львівський</div>
+                <div className="text-left font-bold uppercase tracking-wider" style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}>
+                    <div className="text-sm sm:text-sm leading-tight">львівський</div>
                     <div className="text-sm sm:text-lg leading-tight">тиждень</div>
                     <div className="text-base sm:text-xl leading-tight">скульптури&#39;25</div>
                 </div>
@@ -73,7 +73,7 @@ const Header = () => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="sm:hidden absolute top-full left-0 w-full bg-[#f4ecdf] border-b border-gray-300 shadow-lg"
+                        className="sm:hidden absolute top-full left-0 w-full bg-gray-200 border-b border-gray-300 shadow-lg"
                     >
                         <nav className="flex flex-col space-y-0 p-4 text-center">
                             <Link
@@ -96,13 +96,6 @@ const Header = () => {
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Про проект
-                            </Link>
-                            <Link
-                                href="/festival"
-                                className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                Про Фестиваль
                             </Link>
                             <Link
                                 href="/interview"

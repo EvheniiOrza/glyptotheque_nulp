@@ -106,9 +106,9 @@ const PlacePage: React.FC = () => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-5xl font-sans text-center mb-12"
-                        style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}
+                        style={{ fontFamily: 'MursGotic - MassiveDemi', fontWeight: 'bold'}}
                     >
-                        Простори Гліптотеки
+                        ПРОСТОРИ
                     </motion.h1>
 
                     <div className="space-y-4">
@@ -121,7 +121,7 @@ const PlacePage: React.FC = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                                    className="bg-white shadow-lg overflow-hidden"
                                 >
                                     <button
                                         onClick={() => toggleSpace(space.id)}
@@ -130,7 +130,7 @@ const PlacePage: React.FC = () => {
                                         <div className="flex items-start justify-between">
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-4 mb-3">
-                                                    <div className="bg-amber-100 text-black rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold">
+                                                    <div className="text-black font-bold font- rounded-full w-17 h-17 flex items-center justify-center text-lg">
                                                         {space.id}
                                                     </div>
                                                     <div>
@@ -142,16 +142,9 @@ const PlacePage: React.FC = () => {
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <p className="text-gray-700 leading-relaxed line-clamp-2">
-                                                    {space.description}
-                                                </p>
                                             </div>
                                             <div className="flex items-center gap-4">
-                                                {spaceSculptures.length > 0 && (
-                                                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                                                        {spaceSculptures.length} скульптур
-                                                    </span>
-                                                )}
+
                                                 <motion.div
                                                     animate={{ rotate: expandedSpace === space.id ? 180 : 0 }}
                                                     transition={{ duration: 0.3 }}
@@ -175,9 +168,7 @@ const PlacePage: React.FC = () => {
                                                 <div className="p-8">
                                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                                         <div>
-                                                            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                                                                Опис простору
-                                                            </h3>
+
                                                             <p className="text-gray-700 leading-relaxed">
                                                                 {space.description}
                                                             </p>
@@ -185,20 +176,10 @@ const PlacePage: React.FC = () => {
                                                             <h4 className="text-lg font-semibold text-gray-800 mt-6 mb-3">
                                                                 Експонати:
                                                             </h4>
-                                                            <ul className="space-y-2">
-                                                                {space.exhibits.map((exhibit, idx) => (
-                                                                    <li key={idx} className="flex items-center text-gray-600">
-                                                                        <span className="w-2 h-2 bg-gray-100 rounded-full mr-3"></span>
-                                                                        {exhibit}
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
                                                         </div>
 
                                                         <div>
-                                                            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                                                                Скульптури в цьому просторі
-                                                            </h3>
+
                                                             {loading ? (
                                                                 <p className="text-gray-500">Завантаження...</p>
                                                             ) : spaceSculptures.length > 0 ? (
@@ -219,26 +200,36 @@ const PlacePage: React.FC = () => {
                                                                                 )}
                                                                                 <div className="flex-1">
                                                                                     <h4 className="font-semibold text-gray-800 hover:text-amber-600 transition-colors">
+                                                                                        {sculpture.number && (
+                                                                                            <p className="text-gray-600 font-bold text-4xl">
+                                                                                                № {sculpture.number}
+                                                                                            </p>
+                                                                                        )}
+
                                                                                         {sculpture.name}
                                                                                     </h4>
                                                                                     {sculpture.author && (
                                                                                         <p className="text-sm text-gray-600">
-                                                                                            Автор: {sculpture.author}
+                                                                                            {sculpture.author}
                                                                                         </p>
                                                                                     )}
-                                                                                    {sculpture.number && (
-                                                                                        <p className="text-sm text-gray-600">
-                                                                                            № {sculpture.number}
-                                                                                        </p>
-                                                                                    )}
+
                                                                                     {sculpture.style && (
                                                                                         <p className="text-sm text-gray-600">
-                                                                                            Стиль: {sculpture.style}
+                                                                                            Техніка: {sculpture.style}
                                                                                         </p>
                                                                                     )}
                                                                                     {sculpture.year && (
                                                                                         <p className="text-sm text-gray-600">
                                                                                             Рік: {sculpture.year}
+                                                                                        </p>
+                                                                                    )}
+                                                                                    {sculpture.description && (
+                                                                                        <p className="text-sm text-gray-500 mt-2">
+                                                                                            {sculpture.description.length > 65
+                                                                                                ? `${sculpture.description.substring(0, 65)}...`
+                                                                                                : sculpture.description
+                                                                                            }
                                                                                         </p>
                                                                                     )}
                                                                                 </div>
