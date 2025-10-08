@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient';
+import supabase from '../src/utils/supabaseClient';
 
 export async function getAllSculptures() {
     const { data, error } = await supabase.from('sculptures').select('*').order('created_at', { ascending: false });
