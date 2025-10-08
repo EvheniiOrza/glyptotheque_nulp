@@ -5,12 +5,22 @@ import Layout from '@/components/layout/Layout'
 import ArtworkGrid from '@/components/Gallery/ArtworkGrid'
 import supabase from '@/utils/supabaseClient'
 import Loader from '@/components/Admin/Loader'
-import { Artwork } from '@/types/artwork'
 import { SculptureDB } from '@/types/artwork'
 
+// Локальний тип для галереї
+interface GalleryArtwork {
+    id: string
+    title: string
+    description: string
+    imageUrl: string
+    author?: string
+    style?: string
+    number?: string // Змінено на string щоб відповідати SculptureDB
+}
+
 const GalleryPage: React.FC = () => {
-    const [artworks, setArtworks] = useState<Artwork[]>([])
-    const [filteredArtworks, setFilteredArtworks] = useState<Artwork[]>([])
+    const [artworks, setArtworks] = useState<GalleryArtwork[]>([])
+    const [filteredArtworks, setFilteredArtworks] = useState<GalleryArtwork[]>([])
     const [searchTerm, setSearchTerm] = useState('')
     const [loading, setLoading] = useState(true)
 
@@ -18,13 +28,13 @@ const GalleryPage: React.FC = () => {
         const fetchArtworks = async () => {
             const { data, error } = await supabase
                 .from('sculptures')
-                .select('id, name, description, image_urls, author, style, number')
+                .select('id, name, description, image_urls, author, style, number, created_at')
 
             if (error) console.error(error)
             else if (data) {
-                const mapped = data.map((item: Partial<SculptureDB>) => ({
-                    id: item.id!,
-                    title: item.name!,
+                const mapped = data.map((item: SculptureDB) => ({
+                    id: item.id,
+                    title: item.name,
                     description: item.description || '',
                     imageUrl: item.image_urls?.[0] || '/placeholder.jpg',
                     author: item.author,
@@ -47,7 +57,7 @@ const GalleryPage: React.FC = () => {
             setFilteredArtworks(artworks)
         } else {
             const filtered = artworks.filter(artwork =>
-                artwork.number?.toString().toLowerCase().includes(searchTerm.toLowerCase())
+                artwork.number?.toLowerCase().includes(searchTerm.toLowerCase())
             )
             setFilteredArtworks(filtered)
         }

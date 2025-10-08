@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import ArtworkCard from './ArtworkCard'
 
 interface Artwork {
-    id: number
+    id: string // Змінено на string
     title: string
     description: string
     imageUrl: string
