@@ -1,5 +1,5 @@
 import QRCode from 'qrcode';
-import { supabase } from './supabaseClient';
+import supabase from '../src/utils/supabaseClient';
 
 export async function generateQR(sculptureId: string) {
     const url = `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${sculptureId}`;
