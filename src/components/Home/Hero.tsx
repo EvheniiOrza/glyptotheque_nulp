@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
                                 Класичне й сучасне мистецтво зустрічаються, щоб взаємодіяти, контрастувати та бути в діалозі.
                             </p>
                             <p className="mb-4 sm:mb-6">
-                                Цьогоріч Тиждень скульптури став більш міжнародним: скульптори з Німеччини та Литви взяли участь, створивши власні твори для міського простору. У Стрийському парку доповнено скульптурний маршрут новою галереєю на платановій алеї. Таког буде створено скульптурну мапу Львова, очищено від бруду скульптури періоду незалежності та проведено освітню — особливо скульптурну — програму для дітей і дорослих.
+                                Цьогоріч Тиждень скульптури став більш міжнародним: скульптори з Німеччини та Литви взяли участі, створивши власні твори для міського простору. У Стрийському парку доповнено скульптурний маршрут новою галереєю на платановій алеї. Також буде створено скульптурну мапу Львова, очищено від бруду скульптури періоду незалежності та проведено освітню — особливо скульптурну — програму для дітей і дорослих.
                             </p>
                             <p>
                                 Завершиться фестиваль конференцією «Скульптура в публічному просторі».
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
                         </motion.div>
                     </div>
 
-                    {/* Кнопки дій */}
+                    {/* Кнопки дій - правильний порядок як у Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -68,10 +68,10 @@ const Hero: React.FC = () => {
                     >
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/gallery')}
-                            className="bg-gray-500  text-black hover:bg-gray-200 hover:text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            onClick={() => router.push('/project')}
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
-                            Перейти до Галереї
+                            Про проект
                         </Button>
                         <Button
                             variant="dark"
@@ -82,14 +82,14 @@ const Hero: React.FC = () => {
                         </Button>
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/project')}
+                            onClick={() => router.push('/about')}
                             className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
-                            Про проект
+                            Гліптотека
                         </Button>
                     </motion.div>
 
-                    {/* Додаткові кнопки */}
+                    {/* Додаткові кнопки - правильний порядок */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -98,17 +98,31 @@ const Hero: React.FC = () => {
                     >
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/interview')}
-                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            onClick={() => router.push('/gallery')}
+                            className="bg-gray-500 text-black hover:bg-gray-200 hover:text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
-                            Інтерв&#39;ю
+                            Експонати
                         </Button>
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/about')}
+                            onClick={() => router.push('/interview')}
                             className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
-                            Про нас
+                            Тексти
+                        </Button>
+                        <Button
+                            variant="dark"
+                            onClick={() => router.push('/organizers')}
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                        >
+                            Організатори
+                        </Button>
+                        <Button
+                            variant="dark"
+                            onClick={() => router.push('/festival')}
+                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                        >
+                            Про Фестиваль
                         </Button>
                     </motion.div>
                 </div>

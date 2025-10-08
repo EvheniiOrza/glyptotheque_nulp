@@ -5,11 +5,14 @@ import { useRouter } from 'next/navigation'
 import ArtworkCard from './ArtworkCard'
 
 interface Artwork {
-    id: string | number
+    id: number
     title: string
     description: string
     imageUrl: string
-    number?: string // Додаємо номер
+    author?: string
+    style?: string
+    year?: number
+    number?: string
 }
 
 interface ArtworkGridProps {
@@ -19,20 +22,23 @@ interface ArtworkGridProps {
 const ArtworkGrid: React.FC<ArtworkGridProps> = ({ artworks }) => {
     const router = useRouter()
 
-    const handleSelect = (id: string | number) => {
-        router.push(`/gallery/${id}`)
+    const handleArtworkClick = (artwork: Artwork) => {
+        router.push(`/gallery/${artwork.id}`)
     }
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {artworks.map((artwork) => (
                 <ArtworkCard
                     key={artwork.id}
                     title={artwork.title}
                     description={artwork.description}
                     imageUrl={artwork.imageUrl}
-                    number={artwork.number} // Передаємо номер
-                    onClick={() => handleSelect(artwork.id)}
+                    author={artwork.author}
+                    style={artwork.style}
+                    year={artwork.year}
+                    number={artwork.number}
+                    onClick={() => handleArtworkClick(artwork)}
                 />
             ))}
         </div>

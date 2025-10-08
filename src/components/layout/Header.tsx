@@ -23,31 +23,34 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
                 {/* Текст у 3 рядки замість лого */}
                 <Link href="/">
-                <div className="text-left font-bold uppercase tracking-wider" style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}>
-                    <div className="text-sm sm:text-sm leading-tight">львівський</div>
-                    <div className="text-sm sm:text-lg leading-tight">тиждень</div>
-                    <div className="text-base sm:text-xl leading-tight">скульптури&#39;25</div>
-                </div>
+                    <div className="text-left font-bold uppercase tracking-wider" style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}>
+                        <div className="text-sm sm:text-xl leading-tight">львівський</div>
+                        <div className="text-sm sm:text-xl leading-tight">тиждень</div>
+                        <div className="text-sm sm:text-xl leading-tight">скульптури&#39;25</div>
+                    </div>
                 </Link>
                 {/* Десктопне меню */}
                 <nav className="hidden sm:flex space-x-6 text-sm uppercase text-black">
-                    <Link href="/gallery" className="hover:text-gray-100 transition-colors">
-                        Галерея
+                    <Link href="/project" className="hover:text-gray-100 transition-colors">
+                        Про проект
                     </Link>
                     <Link href="/place" className="hover:text-gray-100 transition-colors">
                         Простори
                     </Link>
-                    <Link href="/project" className="hover:text-gray-100 transition-colors">
-                        Про проект
+                    <Link href="/about" className="hover:text-gray-100 transition-colors">
+                        Гліптотека
+                    </Link>
+                    <Link href="/gallery" className="hover:text-gray-100 transition-colors">
+                        Експонати
+                    </Link>
+                    <Link href="/interview" className="hover:text-gray-100 transition-colors">
+                        Тексти
+                    </Link>
+                    <Link href="/organizers" className="hover:text-gray-100 transition-colors">
+                        Організатори
                     </Link>
                     <Link href="/festival" className="hover:text-gray-100 transition-colors">
                         Про Фестиваль
-                    </Link>
-                    <Link href="/interview" className="hover:text-gray-100 transition-colors">
-                        Інтерв&#39;ю
-                    </Link>
-                    <Link href="/about" className="hover:text-gray-100 transition-colors">
-                        Про нас
                     </Link>
                 </nav>
 
@@ -77,11 +80,18 @@ const Header = () => {
                     >
                         <nav className="flex flex-col space-y-0 p-4 text-center">
                             <Link
-                                href="/gallery"
+                                href="/project"
                                 className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Перейти до Галереї
+                                Про проект
+                            </Link>
+                            <Link
+                                href="/about"
+                                className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Гліптотека
                             </Link>
                             <Link
                                 href="/place"
@@ -91,26 +101,35 @@ const Header = () => {
                                 Простори
                             </Link>
                             <Link
-                                href="/project"
+                                href="/gallery"
                                 className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Про проект
+                                Експонати
                             </Link>
                             <Link
                                 href="/interview"
                                 className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Інтерв&#39;ю
+                                Тексти
                             </Link>
+                            {/* Додано посилання на організаторів */}
                             <Link
-                                href="/about"
+                                href="/organizers"
                                 className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Про нас
+                                Організатори
                             </Link>
+                            <Link
+                                href="/festival"
+                                className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Про Фестиваль
+                            </Link>
+
                         </nav>
                     </motion.div>
                 )}
