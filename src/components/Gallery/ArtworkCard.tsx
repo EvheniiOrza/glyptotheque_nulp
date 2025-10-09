@@ -9,7 +9,7 @@ interface ArtworkCardProps {
     imageUrl: string
     author?: string
     style?: string
-    year: number
+    year?: number
     number?: string
     onClick?: () => void
 }
