@@ -1,63 +1,79 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+import Layout from '@/components/layout/Layout'
 
-const Hero: React.FC = () => {
+const AboutPage: React.FC = () => {
     const router = useRouter()
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <div className="min-h-screen bg-white text-black">
-            {/* Main Content */}
-            <main className="pt-28 sm:pt-32 pb-12">
+        <Layout>
+            <div className="min-h-screen bg-white text-black pt-28 sm:pt-32 pb-12">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6">
-                    {/* Заголовок Гліптотека */}
-                    <motion.h1
+                    {/* Заголовок */}
+                    <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
-                        className="text-5xl sm:text-6xl md:text-8xl font-bold text-center mb-12 sm:mb-16 tracking-tight leading-tight"
-                        style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}
+                        className="text-center mb-12 sm:mb-16"
                     >
-                        Гліптотека
-                    </motion.h1>
-
-                    {/* Основний текст */}
-                    <div className="space-y-8 sm:space-y-12">
-                        {/* Перший блок тексту */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.3 }}
-                            className="text-base sm:text-lg leading-relaxed sm:leading-loose"
+                        <h1
+                            className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 tracking-tight leading-tight"
+                            style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}
+                        >
+                            Гліптотека
+                        </h1>
+                        <p
+                            className="text-xl sm:text-2xl text-gray-700"
                             style={{ fontFamily: 'MursGotic - KeyRegular, sans-serif' }}
                         >
-                            <p className="mb-4 sm:mb-6">
-                                <strong className="text-lg sm:text-xl">Львівський тиждень скульптури 2025. Діалоги.</strong>
-                            </p>
-                            <p className="mb-4 sm:mb-6">
-                                У Львові відкривається четвертий Тиждень скульптури, що має тему — «Діалоги».
-                                Фестиваль був започаткований у час війни й став платформою для розвитку мистецтва та його інтеграції у всі простори й процеси міста.
-                            </p>
-                            <p className="mb-4 sm:mb-6">
-                                Ви побачите близько 50 скульптур просто неба, конкурс молодої скульптури, персональні виставки митців і, звісно, головний проєкт — «Гліптотека», який цього року відбувається за участі нового партнера фестивалю — Львівської політехніки. Точніше — у корпусах історичних будівель на вулиці Князя Романа, 1–3 та 5, у центрі Львова.
-                            </p>
-                            <p className="mb-4 sm:mb-6">
-                                Класичне й сучасне мистецтво зустрічаються, щоб взаємодіяти, контрастувати та бути в діалозі.
-                            </p>
-                            <p className="mb-4 sm:mb-6">
-                                Цьогоріч Тиждень скульптури став більш міжнародним: скульптори з Німеччини та Литви взяли участі, створивши власні твори для міського простору. У Стрийському парку доповнено скульптурний маршрут новою галереєю на платановій алеї. Також буде створено скульптурну мапу Львова, очищено від бруду скульптури періоду незалежності та проведено освітню — особливо скульптурну — програму для дітей і дорослих.
-                            </p>
-                            <p>
-                                Завершиться фестиваль конференцією «Скульптура в публічному просторі».
-                                Куратор Львівського тижня скульптури — Павло Гудімов.
-                            </p>
-                        </motion.div>
-                    </div>
+                            Куратор Павло Гудімов
+                        </p>
+                    </motion.div>
+
+                    {/* Основний текст */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="text-base sm:text-lg leading-relaxed sm:leading-loose space-y-6 sm:space-y-8"
+                        style={{ fontFamily: 'MursGotic - KeyRegular, sans-serif' }}
+                    >
+                        <p>
+                            Якщо ви не знаєте слово, яким названо наш проєкт у Політехніці, — прошу не лякатись.
+                        </p>
+
+                        <p>
+                            <strong>Glyptein</strong> грецькою означає «різати камінь», а закінчення <strong>–тека</strong> — за аналогією з бібліотекою чи пінакотекою — означає «збірка» або «колекція», у нашому випадку — саме скульптури. Відомо кілька музеїв, які носять цю розкішну назву — у Мюнхені, Копенгагені та Афінах.
+                        </p>
+
+                        <p>
+                            У межах уже четвертого фестивалю «Львівський тиждень скульптури» ми створюємо нашу львівську Гліптотеку в корпусах Політехніки на вулиці Князя Романа — у прекрасному архітектурному ансамблі, щедро декорованому скульптурними творами на фасадах.
+                        </p>
+
+                        <p>
+                            Наприклад, ця будівля колишньої гімназії імені Франца Йосифа (1876 рік, проєкт Юліуша Гохбергера) прикрашена фігурами польських науковців, освітян і діячів культури авторства Тадеуша Баронча: Миколая Коперніка, Анджея Снядецького, Адама Міцкевича, Тадеуша Чацького, Юзефа-Максиміліана Оссолінського, Яна Длугоша.
+                        </p>
+
+                        <p>
+                            Наша Гліптотека далека від античних стандартів — це поєднання різних періодів, тем, жанрів і авторів: від давнини до сьогодення.
+                        </p>
+
+                        <p>
+                            Нагадуємо тему цьогорічного скульптурного фестивалю — <strong>«Діалоги»</strong>.
+                        </p>
+
+                        <p>
+                            Бажаємо натхненного перегляду і подорожі в часі та просторі.
+                        </p>
+
+                        <p className="text-gray-600">
+                            Дякуємо всім, хто долучився до організації та підтримки фестивалю — а особливо Збройним силам України, завдяки героїзму яких можливе проведення таких культурних подій.
+                        </p>
+                    </motion.div>
 
                     {/* Кнопки дій - правильний порядок як у Header */}
                     <motion.div
@@ -75,10 +91,10 @@ const Hero: React.FC = () => {
                         </Button>
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/about')}
+                            onClick={() => router.push('/gallery')}
                             className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
-                            Гліптотека
+                            Експонати
                         </Button>
                     </motion.div>
 
@@ -91,15 +107,8 @@ const Hero: React.FC = () => {
                     >
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/gallery')}
-                            className="bg-gray-500 text-black hover:bg-gray-200 hover:text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
-                        >
-                            Експонати
-                        </Button>
-                        <Button
-                            variant="dark"
                             onClick={() => router.push('/interview')}
-                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
+                            className="bg-gray-500 text-black hover:bg-gray-200 hover:text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >
                             Тексти
                         </Button>
@@ -119,9 +128,9 @@ const Hero: React.FC = () => {
                         </Button>
                     </motion.div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </Layout>
     )
 }
 
-export default Hero
+export default AboutPage
