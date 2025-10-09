@@ -31,9 +31,6 @@ const Header = () => {
                 </Link>
                 {/* Десктопне меню */}
                 <nav className="hidden sm:flex space-x-6 text-sm uppercase text-black">
-                    <Link href="/project" className="hover:text-gray-100 transition-colors">
-                        Про проект
-                    </Link>
                     <Link href="/place" className="hover:text-gray-100 transition-colors">
                         Простори
                     </Link>
@@ -79,13 +76,6 @@ const Header = () => {
                         className="sm:hidden absolute top-full left-0 w-full bg-gray-200 border-b border-gray-300 shadow-lg"
                     >
                         <nav className="flex flex-col space-y-0 p-4 text-center">
-                            <Link
-                                href="/project"
-                                className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                Про проект
-                            </Link>
                             <Link
                                 href="/about"
                                 className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"

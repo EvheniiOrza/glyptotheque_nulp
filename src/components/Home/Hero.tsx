@@ -68,13 +68,6 @@ const Hero: React.FC = () => {
                     >
                         <Button
                             variant="dark"
-                            onClick={() => router.push('/project')}
-                            className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
-                        >
-                            Про проект
-                        </Button>
-                        <Button
-                            variant="dark"
                             onClick={() => router.push('/place')}
                             className="bg-gray-500 hover:bg-gray-200 text-black px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium rounded-none transition-colors duration-300 w-full sm:w-auto text-center border border-gray-400"
                         >

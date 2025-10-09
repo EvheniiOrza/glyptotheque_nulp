@@ -7,7 +7,7 @@ import supabase from '@/utils/supabaseClient'
 import Loader from '@/components/Admin/Loader'
 import { SculptureDB } from '@/types/artwork'
 
-// Локальний тип для галереї
+// Локальний тип для галереї - зробити year опціональним
 interface GalleryArtwork {
     id: string
     title: string
@@ -15,7 +15,8 @@ interface GalleryArtwork {
     imageUrl: string
     author?: string
     style?: string
-    number?: string // Змінено на string щоб відповідати SculptureDB
+    number?: string
+    year?: number // Змінити на опціональне
 }
 
 const GalleryPage: React.FC = () => {
@@ -26,9 +27,10 @@ const GalleryPage: React.FC = () => {
 
     useEffect(() => {
         const fetchArtworks = async () => {
+            // Додати year до запиту
             const { data, error } = await supabase
                 .from('sculptures')
-                .select('id, name, description, image_urls, author, style, number, created_at')
+                .select('id, name, description, image_urls, author, style, number, year, created_at')
 
             if (error) console.error(error)
             else if (data) {
@@ -40,6 +42,7 @@ const GalleryPage: React.FC = () => {
                     author: item.author,
                     style: item.style,
                     number: item.number,
+                    year: item.year // Тепер це number | undefined
                 }))
                 setArtworks(mapped)
                 setFilteredArtworks(mapped)
