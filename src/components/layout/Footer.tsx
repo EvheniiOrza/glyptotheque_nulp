@@ -11,10 +11,10 @@ const Footer = () => {
                 </p>
 
                 <div className="flex space-x-6">
-                    <Link href="/privacy" className="hover:text-amber-400 transition">
+                    <Link href="/info" className="hover:text-amber-400 transition">
                         Політика конфіденційності
                     </Link>
-                    <Link href="/contact" className="hover:text-amber-400 transition">
+                    <Link href="/info" className="hover:text-amber-400 transition">
                         Контакти
                     </Link>
                 </div>

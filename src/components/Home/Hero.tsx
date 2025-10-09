@@ -12,7 +12,7 @@ const AboutPage: React.FC = () => {
     const router = useRouter()
 
     return (
-        <Layout>
+
             <div className="min-h-screen bg-white text-black pt-28 sm:pt-32 pb-12">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6">
                     {/* Заголовок */}
@@ -101,7 +101,7 @@ const AboutPage: React.FC = () => {
                     </motion.div>
                 </div>
             </div>
-        </Layout>
+
     )
 }
 
