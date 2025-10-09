@@ -15,14 +15,14 @@ const FestivalPage: React.FC = () => {
                         className="text-4xl md:text-5xl font-sans text-center mb-12 font-bold"
                         style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}
                     >
-                        ФЕСТИВАЛЬ
+                       ПРО ФЕСТИВАЛЬ
                     </motion.h1>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white rounded-2xl shadow-lg p-8 mb-8"
+                        className="bg-white rounded-none shadow-lg p-8 mb-8"
                     >
                         <h2 className="text-2xl font-bold text-gray-800 mb-6">
                             Про фестиваль «Львівський тиждень скульптури»
@@ -44,7 +44,7 @@ const FestivalPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="bg-white rounded-2xl shadow-lg p-8"
+                        className="bg-white rounded-none shadow-lg p-8"
                     >
                         <h2 className="text-2xl font-bold text-gray-800 mb-6">
                             Програма Львівського тижня скульптури 2025 «Діалоги»

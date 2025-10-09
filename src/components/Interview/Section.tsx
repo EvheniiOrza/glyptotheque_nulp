@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface SectionProps {
     title: string
-    content: React.ReactNode // Змінити з string на ReactNode
+    content: React.ReactNode
     initiallyOpen?: boolean
 }
 
@@ -13,13 +13,13 @@ const Section: React.FC<SectionProps> = ({ title, content, initiallyOpen = false
     const [open, setOpen] = useState(initiallyOpen)
 
     return (
-        <div className="mb-6 border-b border-gray-800 pb-4">
+        <div className="mb-6 border-b border-gray-300 pb-4">
             <button
                 onClick={() => setOpen(!open)}
-                className="w-full text-left text-gold font-sans text-xl mb-2 flex justify-between items-center"
+                className="w-full text-left text-gray-900 font-sans text-xl mb-2 flex justify-between items-center hover:text-gray-700 transition-colors"
             >
                 {title}
-                <span className="ml-2">{open ? '−' : '+'}</span>
+                <span className="ml-2 text-gray-600">{open ? '−' : '+'}</span>
             </button>
 
             <AnimatePresence>
@@ -30,7 +30,7 @@ const Section: React.FC<SectionProps> = ({ title, content, initiallyOpen = false
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <div className="text-gray-100 leading-relaxed mt-2 font-body">{content}</div>
+                        <div className="text-gray-800 leading-relaxed mt-2 font-body">{content}</div>
                     </motion.div>
                 )}
             </AnimatePresence>

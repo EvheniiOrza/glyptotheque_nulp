@@ -32,11 +32,12 @@ const ArtworkCard: React.FC<ArtworkCardProps> = ({
             className="bg-white border border-gray-300 shadow-sm overflow-hidden cursor-pointer group h-full flex flex-col"
             onClick={onClick}
         >
-            <div className="h-64 bg-gray-300 flex items-center justify-center overflow-hidden">
+            {/* Контейнер 1:1 для картинки без фону */}
+            <div className="relative aspect-square flex items-center justify-center overflow-hidden">
                 <img
                     src={imageUrl}
                     alt={title}
-                    className="max-w-full max-h-full object-contain"
+                    className="w-full h-full object-contain"
                 />
             </div>
 

@@ -29,7 +29,7 @@ const ArtworkModal: React.FC<ArtworkModalProps> = ({ isOpen, onClose, images, ti
                     exit={{ opacity: 0 }}
                 >
                     <motion.div
-                        className="bg-gray-100 rounded-2xl max-w-3xl w-full overflow-hidden relative shadow-2xl"
+                        className="bg-gray-100 rounded-none max-w-3xl w-full overflow-hidden relative shadow-2xl"
                         initial={{ scale: 0.8 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0.8 }}

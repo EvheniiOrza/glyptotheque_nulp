@@ -3,15 +3,15 @@
 import React from 'react'
 
 interface QuoteProps {
-    text: React.ReactNode // Змінити з string на ReactNode
+    text: React.ReactNode
     author?: string
 }
 
 const Quote: React.FC<QuoteProps> = ({ text, author }) => {
     return (
-        <blockquote className="border-l-4 border-gold pl-4 italic text-gray-100 my-6">
-            <div className="text-gold">&quot;{text}&quot;</div>
-            {author && <span className="block mt-1 text-sm text-gray-300">— {author}</span>}
+        <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-800 my-6">
+            <div className="text-gray-900">{text}</div>
+            {author && <span className="block mt-1 text-sm text-gray-600">— {author}</span>}
         </blockquote>
     )
 }

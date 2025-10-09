@@ -55,10 +55,10 @@ const OrganizersPage: React.FC = () => {
                     <motion.h1
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-sans text-center mb-12"
+                        className="text-4xl md:text-5xl font-sans font-bold text-center mb-12"
                         style={{ fontFamily: 'MursGotic - MassiveDemi, sans-serif' }}
                     >
-                        Організатори та партнери
+                        ОРГАНІЗАТОРИ ТА ПАРТНЕРИ
                     </motion.h1>
 
                     {/* Секція з логотипами партнерів */}
@@ -69,12 +69,12 @@ const OrganizersPage: React.FC = () => {
                         className="space-y-8"
                     >
                         {/* Організатори */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-none shadow-lg p-8">
                             <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Організатори</h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center">
                                 {partners.organizers.map((partner, index) => (
                                     <div key={index} className="flex flex-col items-center">
-                                        <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center mb-2 p-2">
+                                        <div className="w-24 h-24 bg-gray-100 rounded-none flex items-center justify-center mb-2 p-2">
                                             <img
                                                 src={partner.logo}
                                                 alt={partner.name}
@@ -95,12 +95,12 @@ const OrganizersPage: React.FC = () => {
                         </div>
 
                         {/* Співорганізатори */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-none shadow-lg p-8">
                             <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Співорганізатори та партнери</h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center justify-items-center">
                                 {partners.coOrganizers.map((partner, index) => (
                                     <div key={index} className="flex flex-col items-center">
-                                        <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center mb-2 p-2">
+                                        <div className="w-24 h-24 bg-gray-100 rounded-none flex items-center justify-center mb-2 p-2">
                                             <img
                                                 src={partner.logo}
                                                 alt={partner.name}
@@ -121,12 +121,12 @@ const OrganizersPage: React.FC = () => {
                         </div>
 
                         {/* Медіа-партнери */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-none shadow-lg p-8">
                             <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Медіа-партнери</h3>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-items-center">
                                 {partners.mediaPartners.map((partner, index) => (
                                     <div key={index} className="flex flex-col items-center">
-                                        <div className="w-32 h-20 bg-gray-100 rounded-lg flex items-center justify-center mb-2 p-2">
+                                        <div className="w-32 h-20 bg-gray-100 rounded-none flex items-center justify-center mb-2 p-2">
                                             <img
                                                 src={partner.logo}
                                                 alt={partner.name}
@@ -147,11 +147,11 @@ const OrganizersPage: React.FC = () => {
                         </div>
 
                         {/* Готельний партнер */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-none shadow-lg p-8">
                             <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Готельний партнер</h3>
                             <div className="flex justify-center">
                                 <div className="flex flex-col items-center">
-                                    <div className="w-32 h-20 bg-gray-100 rounded-lg flex items-center justify-center mb-2 p-2">
+                                    <div className="w-32 h-20 bg-gray-100 rounded-none flex items-center justify-center mb-2 p-2">
                                         <img
                                             src={partners.hotelPartner[0].logo}
                                             alt={partners.hotelPartner[0].name}
@@ -171,11 +171,11 @@ const OrganizersPage: React.FC = () => {
                         </div>
 
                         {/* Меценати */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-none shadow-lg p-8">
                             <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Меценати проєкту</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {sponsors.map((sponsor, index) => (
-                                    <div key={index} className="text-center py-3 px-4 bg-gray-200 rounded-lg">
+                                    <div key={index} className="text-center py-3 px-4 bg-gray-200 rounded-none">
                                         <span className="text-gray-700">{sponsor}</span>
                                     </div>
                                 ))}

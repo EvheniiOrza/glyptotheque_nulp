@@ -66,7 +66,7 @@ const AboutPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white rounded-2xl shadow-lg p-8 mb-8"
+                        className="bg-white rounded-none shadow-lg p-8 mb-8"
                     >
                         <h2 className="text-2xl font-bold text-gray-800 mb-6">
                             Львівський тиждень скульптури 2025
@@ -97,7 +97,7 @@ const AboutPage: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="bg-white rounded-2xl shadow-lg p-8 mb-8"
+                        className="bg-white rounded-none shadow-lg p-8 mb-8"
                     >
                         <h2 className="text-2xl font-bold text-gray-800 mb-6">Що таке Гліптотека?</h2>
                         <div className="space-y-4 text-gray-700 leading-relaxed text-lg">

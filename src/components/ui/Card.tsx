@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({ children, className = '', onClick }) => {
             whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
             onClick={onClick}
-            className={`bg-black border border-gray-800 rounded-2xl shadow-lg p-6 hover:border-gold cursor-pointer transition-all duration-300 ${className}`}
+            className={`bg-black border border-gray-800 rounded-none shadow-lg p-6 hover:border-gold cursor-pointer transition-all duration-300 ${className}`}
         >
             {children}
         </motion.div>

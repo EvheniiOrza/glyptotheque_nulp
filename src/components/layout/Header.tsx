@@ -34,7 +34,7 @@ const Header = () => {
                     <Link href="/place" className="hover:text-gray-100 transition-colors">
                         Простори
                     </Link>
-                    <Link href="/about" className="hover:text-gray-100 transition-colors">
+                    <Link href="/" className="hover:text-gray-100 transition-colors">
                         Гліптотека
                     </Link>
                     <Link href="/gallery" className="hover:text-gray-100 transition-colors">
@@ -77,7 +77,7 @@ const Header = () => {
                     >
                         <nav className="flex flex-col space-y-0 p-4 text-center">
                             <Link
-                                href="/about"
+                                href="/"
                                 className="py-3 px-4 hover:bg-amber-100 hover:text-amber-700 transition-colors border-b border-gray-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >

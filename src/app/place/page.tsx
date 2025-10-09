@@ -187,7 +187,7 @@ const PlacePage: React.FC = () => {
                                                                         <Link
                                                                             key={sculpture.id}
                                                                             href={`/gallery/${sculpture.id}`}
-                                                                            className="block border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors"
+                                                                            className="block border border-gray-200 rounded-none p-4 hover:bg-gray-50 transition-colors"
                                                                         >
                                                                             <div className="flex items-start gap-3">
                                                                                 {sculpture.image_urls?.[0] && (

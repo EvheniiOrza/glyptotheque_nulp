@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
                                            disabled = false, // ✅ дефолтне значення
                                        }) => {
     const base =
-        'px-6 py-2 uppercase tracking-widest text-sm font-medium rounded-full transition-all duration-300 border'
+        'px-6 py-2 uppercase tracking-widest text-sm font-medium rounded-none transition-all duration-300 border'
 
     const styles =
         variant === 'gold'
