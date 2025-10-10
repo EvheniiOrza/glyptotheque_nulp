@@ -230,7 +230,7 @@ const PlacePage: React.FC = () => {
                                                                                         )}
                                                                                         {sculpture.style && (
                                                                                             <p className="text-sm text-gray-600">
-                                                                                                Техніка: {sculpture.style}
+                                                                                                Матеріал: {sculpture.style}
                                                                                             </p>
                                                                                         )}
                                                                                         {sculpture.year && (

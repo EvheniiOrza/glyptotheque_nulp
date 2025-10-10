@@ -166,7 +166,7 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Стиль
+                        Матеріал
                     </label>
                     <input
                         type="text"
