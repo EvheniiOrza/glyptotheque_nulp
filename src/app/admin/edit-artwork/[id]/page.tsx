@@ -21,6 +21,14 @@ const EditArtworkPage: React.FC = () => {
 
     useEffect(() => {
         const fetchArtwork = async () => {
+            if (!id) {
+                console.error('No ID provided')
+                setLoading(false)
+                return
+            }
+
+            console.log('Fetching artwork with ID:', id)
+
             const { data, error } = await supabase
                 .from('sculptures')
                 .select('*')
@@ -34,17 +42,20 @@ const EditArtworkPage: React.FC = () => {
             }
 
             if (data) {
-                // Зберігаємо існуючі фото в окремому стані
+                console.log('Fetched artwork data:', data)
+
+                // Зберігаємо існуючі фото
                 setExistingImages(data.image_urls || [])
 
                 setArtworkData({
-                    name: data.name,
+                    name: data.name || '',
                     description: data.description || '',
                     author: data.author || '',
                     style: data.style || '',
                     year: data.year || undefined,
                     number: data.number || '',
-                    photos: [], // Нові фото, які будуть додані
+                    space_id: data.space_id || undefined,
+                    photos: [],
                     qr_url: data.qr_url || '',
                 })
             }
@@ -55,7 +66,11 @@ const EditArtworkPage: React.FC = () => {
     }, [id])
 
     const handleSubmit = async (data: ArtworkFormData) => {
-        if (!artworkData) return
+        if (!artworkData || !id) {
+            alert('Немає даних для оновлення або ID не знайдено')
+            return
+        }
+
         setSaving(true)
         try {
             const uploadedUrls: string[] = []
@@ -63,8 +78,14 @@ const EditArtworkPage: React.FC = () => {
             // Завантаження нових фото, якщо вони є
             if (data.photos && data.photos.length > 0) {
                 for (const photo of data.photos) {
-                    // Перевіряємо, чи це новий файл (File), чи вже існуючий URL (string)
+                    // Перевіряємо, чи це новий файл (File)
                     if (photo instanceof File) {
+                        // Перевірка розміру файлу (макс. 5MB)
+                        if (photo.size > 5 * 1024 * 1024) {
+                            alert(`Файл "${photo.name}" занадто великий. Максимальний розмір: 5MB`)
+                            continue
+                        }
+
                         const fileExt = photo.name.split('.').pop()
                         const fileName = `${uuidv4()}.${fileExt}`
                         const { error: uploadError } = await supabase.storage
@@ -87,7 +108,18 @@ const EditArtworkPage: React.FC = () => {
             // Об'єднуємо існуючі фото з новими
             const allImages = [...existingImages, ...uploadedUrls]
 
-            // Оновлення запису
+            console.log('Updating artwork with data:', {
+                name: data.name,
+                description: data.description,
+                author: data.author,
+                style: data.style,
+                year: data.year,
+                number: data.number,
+                space_id: data.space_id,
+                image_urls: allImages,
+            })
+
+            // Оновлення запису в sculptures БЕЗ updated_at
             const { error: updateError } = await supabase
                 .from('sculptures')
                 .update({
@@ -97,13 +129,16 @@ const EditArtworkPage: React.FC = () => {
                     style: data.style,
                     year: data.year,
                     number: data.number,
-                    qr_url: data.qr_url,
+                    space_id: data.space_id,
                     image_urls: allImages,
-                    updated_at: new Date().toISOString(),
+                    // Видаляємо updated_at, оскільки його немає в схемі
                 })
                 .eq('id', id)
 
-            if (updateError) throw updateError
+            if (updateError) {
+                console.error('Update error:', updateError)
+                throw updateError
+            }
 
             alert('Скульптуру успішно оновлено!')
             router.push('/admin')
@@ -141,10 +176,10 @@ const EditArtworkPage: React.FC = () => {
                 </h1>
                 <ArtworkForm
                     initialData={artworkData}
-                    existingImages={existingImages} // Передаємо існуючі фото
+                    existingImages={existingImages}
                     onSubmit={handleSubmit}
                     saving={saving}
-                    onExistingImagesChange={setExistingImages} // Дозволяємо видаляти існуючі фото
+                    onExistingImagesChange={setExistingImages}
                 />
             </div>
         </Layout>
