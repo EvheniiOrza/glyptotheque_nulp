@@ -8,33 +8,33 @@ const OrganizersPage: React.FC = () => {
     // Дані партнерів з логотипами згідно з вашою структурою папок
     const partners = {
         superOrganizers: [
-            { name: "АВОБУД", logo: "/logos/suporganizers/avobud.png" },
             { name: "Jam Factory", logo: "/logos/suporganizers/jamfactory.png" },
-            { name: "Литовський культурний інститут", logo: "/logos/suporganizers/LCI.png" },
-            { name: "Дизайн-студія MAKHNO", logo: "/logos/suporganizers/makhno.png" },
-            { name: "Культурний простір MONO", logo: "/logos/suporganizers/mono.png" },
             { name: "Львівська політехніка", logo: "/logos/suporganizers/nulp.png" },
+            { name: "Культурний простір MONO", logo: "/logos/suporganizers/mono.png" },
+            { name: "Дизайн-студія MAKHNO", logo: "/logos/suporganizers/makhno.png" },
             { name: "Стрийський парк", logo: "/logos/suporganizers/stryipark.png" },
-            { name: "Територія Терору", logo: "/logos/suporganizers/teretoryteror.png" }
+            { name: "Литовський культурний інститут", logo: "/logos/suporganizers/LCI.png" },
+            { name: "Територія Терору", logo: "/logos/suporganizers/teretoryteror.png" },
+            { name: "АВОБУД", logo: "/logos/suporganizers/avobud.png" }
         ],
         organizers: [
-            { name: "Фундація ЧервонеЧорне", logo: "/logos/organizers/chervone.png" },
-            { name: "Coma - Сучасний музей мистецтва", logo: "/logos/organizers/coma.png" },
-            { name: "Я Галерея", logo: "/logos/organizers/jagallery.png" },
             { name: "Львівська міська рада", logo: "/logos/organizers/lviv.png" },
             { name: "Львівська обласна рада", logo: "/logos/organizers/lvivrad.png" },
-            { name: "Львівська обласна адміністрація", logo: "/logos/organizers/lvivshnobladm.png" }
+            { name: "Львівська обласна адміністрація", logo: "/logos/organizers/lvivshnobladm.png" },
+            { name: "Я Галерея", logo: "/logos/organizers/jagallery.png" },
+            { name: "Coma - Сучасний музей мистецтва", logo: "/logos/organizers/coma.png" },
+            { name: "Фундація ЧервонеЧорне", logo: "/logos/organizers/chervone.png" },
         ],
         mediaPartners: [
             { name: "24 Канал", logo: "/logos/media-partners/24chanel.png" },
-            { name: "LUX Radio", logo: "/logos/media-partners/luxradio.png" },
             { name: "Maximum Radio", logo: "/logos/media-partners/maximumradio.png" },
-            { name: "ZAXID.NET", logo: "/logos/media-partners/zahidnet.png" }
+            { name: "ZAXID.NET", logo: "/logos/media-partners/zahidnet.png" },
+            { name: "LUX Radio", logo: "/logos/media-partners/luxradio.png" }
         ],
         infoPartners: [
             { name: "Холдинг емоцій «!FEST»", logo: "/logos/info-partners/fest.png" },
-            { name: "lviv.travel", logo: "/logos/info-partners/lvivtravel.png" },
-            { name: "Укрзалізниця", logo: "/logos/info-partners/uz.png" }
+            { name: "Укрзалізниця", logo: "/logos/info-partners/uz.png" },
+            { name: "lviv.travel", logo: "/logos/info-partners/lvivtravel.png" }
         ]
     }
 
@@ -45,7 +45,7 @@ const OrganizersPage: React.FC = () => {
         "Юрій Сташків (Фундація ЧервонеЧорне)",
         "Гарольд Біндер (Jam Factory)",
         "Фундація Адама Харбера",
-        "девелоперське бюро Будинки та люди",
+        "Девелоперське Бюро Будинки та люди",
         "Віктор Гищук",
         "Олег Мацех"
     ]

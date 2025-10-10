@@ -183,59 +183,76 @@ const PlacePage: React.FC = () => {
                                                                 <p className="text-gray-500">Завантаження...</p>
                                                             ) : spaceSculptures.length > 0 ? (
                                                                 <div className="space-y-3">
-                                                                    {spaceSculptures.map((sculpture) => (
-                                                                        <Link
-                                                                            key={sculpture.id}
-                                                                            href={`/gallery/${sculpture.id}`}
-                                                                            className="block border border-gray-200 rounded-none p-4 hover:bg-gray-50 transition-colors"
-                                                                        >
-                                                                            <div className="flex items-start gap-3">
-                                                                                {sculpture.image_urls?.[0] && (
-                                                                                    <img
-                                                                                        src={sculpture.image_urls[0]}
-                                                                                        alt={sculpture.name}
-                                                                                        className="w-16 h-16 object-cover "
-                                                                                    />
-                                                                                )}
-                                                                                <div className="flex-1">
-                                                                                    <h4 className="font-semibold text-gray-800 hover:text-amber-600 transition-colors">
-                                                                                        {sculpture.number && (
-                                                                                            <span className="text-gray-600 font-bold">
-                                                                                                № {sculpture.number}
-                                                                                            </span>
+                                                                    {[...spaceSculptures]
+                                                                        .sort((a, b) => {
+                                                                            // Якщо number відсутній, розміщуємо в кінці
+                                                                            if (!a.number) return 1
+                                                                            if (!b.number) return -1
+
+                                                                            // Конвертуємо в числа для порівняння
+                                                                            const numA = parseInt(a.number, 10)
+                                                                            const numB = parseInt(b.number, 10)
+
+                                                                            // Якщо конвертація не вдалась, порівнюємо як рядки
+                                                                            if (isNaN(numA) || isNaN(numB)) {
+                                                                                return a.number.localeCompare(b.number)
+                                                                            }
+
+                                                                            return numA - numB
+                                                                        })
+                                                                        .map((sculpture) => (
+                                                                            <Link
+                                                                                key={sculpture.id}
+                                                                                href={`/gallery/${sculpture.id}`}
+                                                                                className="block border border-gray-200 rounded-none p-4 hover:bg-gray-50 transition-colors"
+                                                                            >
+                                                                                <div className="flex items-start gap-3">
+                                                                                    {sculpture.image_urls?.[0] && (
+                                                                                        <img
+                                                                                            src={sculpture.image_urls[0]}
+                                                                                            alt={sculpture.name}
+                                                                                            className="w-16 h-16 object-cover "
+                                                                                        />
+                                                                                    )}
+                                                                                    <div className="flex-1">
+                                                                                        <h4 className="font-semibold text-gray-800 hover:text-amber-600 transition-colors">
+                                                                                            {sculpture.number && (
+                                                                                                <span className="text-gray-600 font-bold">
+                                            № {sculpture.number}
+                                        </span>
+                                                                                            )}
+                                                                                            <p className="text-sm text-gray-600">{sculpture.name}</p>
+                                                                                        </h4>
+                                                                                        {sculpture.author && (
+                                                                                            <p className="text-sm text-gray-600">
+                                                                                                {sculpture.author}
+                                                                                            </p>
                                                                                         )}
-                                                                                        <p className="text-sm text-gray-600">{sculpture.name}</p>
-                                                                                    </h4>
-                                                                                    {sculpture.author && (
-                                                                                        <p className="text-sm text-gray-600">
-                                                                                            {sculpture.author}
-                                                                                        </p>
-                                                                                    )}
-                                                                                    {sculpture.style && (
-                                                                                        <p className="text-sm text-gray-600">
-                                                                                            Техніка: {sculpture.style}
-                                                                                        </p>
-                                                                                    )}
-                                                                                    {sculpture.year && (
-                                                                                        <p className="text-sm text-gray-600">
-                                                                                            Рік: {sculpture.year}
-                                                                                        </p>
-                                                                                    )}
-                                                                                    {sculpture.description && (
-                                                                                        <p className="text-sm text-gray-500 mt-2">
-                                                                                            {sculpture.description.length > 65
-                                                                                                ? `${sculpture.description.substring(0, 65)}...`
-                                                                                                : sculpture.description
-                                                                                            }
-                                                                                        </p>
-                                                                                    )}
+                                                                                        {sculpture.style && (
+                                                                                            <p className="text-sm text-gray-600">
+                                                                                                Техніка: {sculpture.style}
+                                                                                            </p>
+                                                                                        )}
+                                                                                        {sculpture.year && (
+                                                                                            <p className="text-sm text-gray-600">
+                                                                                                Рік: {sculpture.year}
+                                                                                            </p>
+                                                                                        )}
+                                                                                        {sculpture.description && (
+                                                                                            <p className="text-sm text-gray-500 mt-2">
+                                                                                                {sculpture.description.length > 65
+                                                                                                    ? `${sculpture.description.substring(0, 65)}...`
+                                                                                                    : sculpture.description
+                                                                                                }
+                                                                                            </p>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    <div className="text-gray-400 hover:text-amber-600 transition-colors">
+                                                                                        →
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div className="text-gray-400 hover:text-amber-600 transition-colors">
-                                                                                    →
-                                                                                </div>
-                                                                            </div>
-                                                                        </Link>
-                                                                    ))}
+                                                                            </Link>
+                                                                        ))}
                                                                 </div>
                                                             ) : (
                                                                 <p className="text-gray-500">Поки що немає скульптур у цьому просторі</p>

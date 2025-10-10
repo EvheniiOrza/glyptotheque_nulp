@@ -87,27 +87,27 @@ const SculptureDetailPage: React.FC = () => {
                     <div className="flex flex-col space-y-6 text-black text-lg font-body">
                         {sculpture.author && (
                             <p>
-                                <span className="text-black font-sans">Автор:</span> {sculpture.author}
+                                <span className="text-black font-sans"></span> {sculpture.author}
                             </p>
                         )}
                         {sculpture.style && (
                             <p>
-                                <span className="text-black font-sans">Стиль:</span> {sculpture.style}
+                                <span className="text-black font-sans"></span> {sculpture.style}
                             </p>
                         )}
                         {sculpture.year && (
                             <p>
-                                <span className="text-black font-sans">Рік створення:</span> {sculpture.year}
+                                <span className="text-black font-sans"></span> {sculpture.year}
                             </p>
                         )}
                         {sculpture.number && (
                             <p>
-                                <span className="text-black font-sans">Номер:</span> {sculpture.number}
+                                <span className="text-black font-sans"></span> {sculpture.number}
                             </p>
                         )}
                         {sculpture.description && (
                             <div>
-                                <h2 className="text-black font-sans mb-2">Опис</h2>
+                                <h2 className="text-black font-sans mb-2"></h2>
                                 <p className="leading-relaxed">{sculpture.description}</p>
                             </div>
                         )}

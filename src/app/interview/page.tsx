@@ -25,6 +25,37 @@ const InterviewPage: React.FC = () => {
                         <div className="w-24 h-px bg-gray-300 mx-auto"></div>
                     </div>
 
+                    {/* Матеріал про гліптотеку */}
+                    <div className="border border-gray-300 rounded-none overflow-hidden transition-all duration-500 hover:border-gray-400">
+                        <button
+                            onClick={() => toggleInterview('glyptotheque')}
+                            className="w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-all duration-300 group"
+                        >
+                            <div className="flex justify-between items-start">
+                                <div className="flex-1">
+                                    <h2 className="text-xl md:text-2xl font-light text-black group-hover:text-opacity-90 transition-colors duration-300 mb-3">
+                                        Навіщо нам гліптотека?
+                                    </h2>
+                                    <p className="text-black font-body text-base leading-relaxed italic">
+                                        Історичний досвід та український контекст
+                                    </p>
+                                    <p className="text-gray-600 font-body text-sm mt-2">Діана Клочко</p>
+                                </div>
+                                <span className="text-black text-2xl ml-6 flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                                    {activeInterview === 'glyptotheque' ? '−' : '+'}
+                                </span>
+                            </div>
+                        </button>
+
+                        {activeInterview === 'glyptotheque' && (
+                            <div className="border-t border-gray-300 bg-gray-50">
+                                <div className="p-6 animate-fadeIn">
+                                    <InterviewGlyp />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
                     {/* Інтерв'ю з Миколою Бевзом */}
                     <div className="border border-gray-300 rounded-none overflow-hidden transition-all duration-500 hover:border-gray-400">
                         <button
@@ -85,36 +116,7 @@ const InterviewPage: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Матеріал про гліптотеку */}
-                    <div className="border border-gray-300 rounded-none overflow-hidden transition-all duration-500 hover:border-gray-400">
-                        <button
-                            onClick={() => toggleInterview('glyptotheque')}
-                            className="w-full text-left p-6 bg-gray-50 hover:bg-gray-100 transition-all duration-300 group"
-                        >
-                            <div className="flex justify-between items-start">
-                                <div className="flex-1">
-                                    <h2 className="text-xl md:text-2xl font-light text-black group-hover:text-opacity-90 transition-colors duration-300 mb-3">
-                                        Навіщо нам гліптотека?
-                                    </h2>
-                                    <p className="text-black font-body text-base leading-relaxed italic">
-                                        Історичний досвід та український контекст
-                                    </p>
-                                    <p className="text-gray-600 font-body text-sm mt-2">Діана Клочко</p>
-                                </div>
-                                <span className="text-black text-2xl ml-6 flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                                    {activeInterview === 'glyptotheque' ? '−' : '+'}
-                                </span>
-                            </div>
-                        </button>
 
-                        {activeInterview === 'glyptotheque' && (
-                            <div className="border-t border-gray-300 bg-gray-50">
-                                <div className="p-6 animate-fadeIn">
-                                    <InterviewGlyp />
-                                </div>
-                            </div>
-                        )}
-                    </div>
                 </div>
             </main>
         </Layout>
