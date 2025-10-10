@@ -18,8 +18,8 @@ const OrganizersPage: React.FC = () => {
             { name: "АВОБУД", logo: "/logos/suporganizers/avobud.png" }
         ],
         organizers: [
-            { name: "Львівська міська рада", logo: "/logos/organizers/lviv.png" },
-            { name: "Львівська обласна рада", logo: "/logos/organizers/lvivrad.png" },
+            { name: "Львівська міська рада", logo: "/logos/organizers/lvivrad.png" },
+            { name: "Львівська обласна рада", logo: "/logos/organizers/lvivska_oblasna_derzhavna_administraciya_logo.jpg" },
             { name: "Львівська обласна адміністрація", logo: "/logos/organizers/lvivshnobladm.png" },
             { name: "Я Галерея", logo: "/logos/organizers/jagallery.png" },
             { name: "Coma - Сучасний музей мистецтва", logo: "/logos/organizers/coma.png" },
