@@ -11,13 +11,15 @@ interface ArtworkFormProps {
     existingImages?: string[]
     onSubmit?: (data: ArtworkFormData) => void | Promise<void>
     saving?: boolean
+    onExistingImagesChange?: (images: string[]) => void // Додано новий проп
 }
 
 const ArtworkForm: React.FC<ArtworkFormProps> = ({
                                                      initialData,
                                                      existingImages = [],
                                                      onSubmit,
-                                                     saving
+                                                     saving,
+                                                     onExistingImagesChange // Додано
                                                  }) => {
     const [name, setName] = useState(initialData?.name || '')
     const [author, setAuthor] = useState(initialData?.author || '')
@@ -27,6 +29,7 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
     const [spaceId, setSpaceId] = useState<number | undefined>(initialData?.space_id ?? undefined)
     const [description, setDescription] = useState(initialData?.description || '')
     const [photos, setPhotos] = useState<File[]>(initialData?.photos || [])
+    const [currentExistingImages, setCurrentExistingImages] = useState<string[]>(existingImages) // Локальний стан для існуючих фото
     const [error, setError] = useState('')
     const [previewUrls, setPreviewUrls] = useState<string[]>([])
     const [isDragging, setIsDragging] = useState(false)
@@ -45,6 +48,11 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
             newPreviewUrls.forEach(url => URL.revokeObjectURL(url))
         }
     }, [photos])
+
+    // Оновлення локального стану при зміні пропсу
+    React.useEffect(() => {
+        setCurrentExistingImages(existingImages)
+    }, [existingImages])
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || [])
@@ -86,8 +94,10 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
     }
 
     const removeExistingImage = (index: number) => {
-        // Логіка для видалення існуючих зображень з бази даних
-        console.log('Remove existing image:', existingImages[index])
+        const updatedImages = currentExistingImages.filter((_, i) => i !== index)
+        setCurrentExistingImages(updatedImages)
+        // Сповіщаємо батьківський компонент про зміни
+        onExistingImagesChange?.(updatedImages)
     }
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -98,7 +108,7 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
             return
         }
 
-        if (photos.length === 0 && existingImages.length === 0) {
+        if (photos.length === 0 && currentExistingImages.length === 0) {
             setError('Будь ласка, додайте хоча б одне фото')
             return
         }
@@ -208,7 +218,7 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                     <option value="1">1 - Велика виставкова зала</option>
                     <option value="2">2 - Вхідний хол з левами</option>
                     <option value="3">3 - Скульптурна галерея</option>
-                    <option value="4">4 - Подвір&#39;я - автостоянка</option>
+                    <option value="4">4 - Подвір'я - автостоянка</option>
                     <option value="5">5 - Вхідний хол з Юстицією</option>
                     <option value="6">6 - Кімната-музей</option>
                     <option value="7">7 - Нарадча кімната</option>
@@ -230,13 +240,13 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
             </div>
 
             {/* Існуючі зображення */}
-            {existingImages.length > 0 && (
+            {currentExistingImages.length > 0 && (
                 <div>
                     <label className="block text-sm font-medium text-gray-300 mb-3">
-                        Існуючі зображення
+                        Існуючі зображення ({currentExistingImages.length})
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                        {existingImages.map((url, index) => (
+                        {currentExistingImages.map((url, index) => (
                             <motion.div
                                 key={index}
                                 className="relative group"
@@ -353,7 +363,7 @@ const ArtworkForm: React.FC<ArtworkFormProps> = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                     >
-                        Вибрано файлів: {photos.length}
+                        Вибрано нових файлів: {photos.length}
                     </motion.div>
                 )}
             </div>
