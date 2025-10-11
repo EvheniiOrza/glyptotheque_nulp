@@ -25,6 +25,7 @@ const AdminPage: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [sculptures, setSculptures] = useState<SculptureWithQR[]>([])
     const [loading, setLoading] = useState(true)
+    const [deletingId, setDeletingId] = useState<string | null>(null)
 
     useEffect(() => {
         checkAuth()
@@ -91,6 +92,31 @@ const AdminPage: React.FC = () => {
         } catch (error) {
             console.error('Помилка завантаження QR-коду:', error)
             alert('Не вдалося завантажити QR-код')
+        }
+    }
+
+    const handleDelete = async (sculptureId: string, sculptureName: string) => {
+        if (!confirm(`Ви впевнені, що хочете видалити скульптуру "${sculptureName}"?`)) {
+            return
+        }
+
+        setDeletingId(sculptureId)
+        try {
+            const { error } = await supabase
+                .from('sculptures')
+                .delete()
+                .eq('id', sculptureId)
+
+            if (error) throw error
+
+            // Оновлюємо список після видалення
+            setSculptures(prev => prev.filter(s => s.id !== sculptureId))
+
+        } catch (error) {
+            console.error('Помилка при видаленні скульптури:', error)
+            alert('Не вдалося видалити скульптуру')
+        } finally {
+            setDeletingId(null)
         }
     }
 
@@ -246,6 +272,13 @@ const AdminPage: React.FC = () => {
                                                 >
                                                     Редагувати
                                                 </Link>
+                                                <button
+                                                    onClick={() => handleDelete(sculpture.id, sculpture.name)}
+                                                    disabled={deletingId === sculpture.id}
+                                                    className="bg-red-600 text-white px-3 py-1 rounded text-xs hover:bg-red-500 disabled:bg-red-400 disabled:cursor-not-allowed transition"
+                                                >
+                                                    {deletingId === sculpture.id ? 'Видалення...' : 'Видалити'}
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
