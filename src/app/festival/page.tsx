@@ -30,16 +30,18 @@ const FestivalPage: React.FC = () => {
         ],
         "2023": [
             {
-                id: 4,
-                title: "Львівський тиждень скульптури 2023",
-                url: "https://youtu.be/EnRppMyYtms?si=ivP_CmbkcnZDkWCu",
-                thumbnail: "https://img.youtube.com/vi/EnRppMyYtms/maxresdefault.jpg"
-            },
-            {
                 id: 5,
                 title: "Перший фестиваль скульптури 2023",
                 url: "https://youtu.be/0eb-_mStr4U?si=ZA4Kn7JoMlOf-GYb",
                 thumbnail: "https://img.youtube.com/vi/0eb-_mStr4U/maxresdefault.jpg"
+            }
+        ],
+        "2022":[
+            {
+                id: 4,
+                title: "Львівський тиждень скульптури 2022",
+                url: "https://youtu.be/EnRppMyYtms?si=ivP_CmbkcnZDkWCu",
+                thumbnail: "https://img.youtube.com/vi/EnRppMyYtms/maxresdefault.jpg"
             }
         ]
     }
@@ -60,6 +62,19 @@ const FestivalPage: React.FC = () => {
                     >
                         ПРО ФЕСТИВАЛЬ
                     </motion.h1>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-white rounded-none shadow-lg p-8 mb-8"
+                    >
+
+                        <div className="space-y-4 text-gray-700 leading-relaxed">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-6">Виставку «Замилування» Ярослава Мотики можна оглянути у «Я Галерея Львів»(вул. Шота Руставелі, 8) з 4 вересня по 30 листопада 2025 року.</h2>
+                            <h2 className="text-2xl font-bold text-gray-800 mb-6">Виставку Ярослави Мотики можна відвідати у «Я Галерея Пентхаус» (вул. Зелена, 20) з 19 вересня по 30 листопада 2025 року.</h2>
+                        </div>
+                    </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -163,9 +178,7 @@ const FestivalPage: React.FC = () => {
                             <div>
                                 <h3 className="font-bold text-lg mb-2">З листопада</h3>
                                 <p>Встановлення скульптури-фонтану «Викрадення Європи» Ярослава Мотики у Стрийському парку.</p>
-                                <p>Виставку «Замилування» Ярослава Мотики можна оглянути у «Я Галерея Львів»(вул. Шота Руставелі, 8) з 4 вересня по 30 листопада 2025 року.</p>
-                                <p>Виставку Ярослави Мотики можна відвідати у «Я Галерея Пентхаус» (вул. Зелена, 20) з 19 вересня по 30 листопада 2025 року.</p>
-                            </div>
+                                </div>
                         </div>
                     </motion.div>
 
