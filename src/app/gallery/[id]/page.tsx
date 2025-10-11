@@ -83,9 +83,7 @@ const SculptureDetailPage: React.FC = () => {
                     </button>
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-sans text-black text-center mb-12">
-                    {sculpture.name}
-                </h1>
+
 
                 <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Галерея фото */}
@@ -103,24 +101,27 @@ const SculptureDetailPage: React.FC = () => {
 
                     {/* Детальна інформація */}
                     <div className="flex flex-col space-y-6 text-black text-lg font-body">
+                        {sculpture.number && (
+                            <p>
+                                <span className="font-bold text-black text-3xl">{sculpture.number}</span>
+                            </p>
+                        )}
                         {sculpture.author && (
-                            <p>
-                                <span className="text-black font-sans"></span> {sculpture.author}
-                            </p>
+                        <p>
+                            <span className="text-black font-sans"></span> {sculpture.author}
+                        </p>
                         )}
-                        {sculpture.style && (
-                            <p>
-                                <span className="text-black font-sans"></span> {sculpture.style}
-                            </p>
-                        )}
+                        <p className="text-black font-sans">
+                            {sculpture.name}
+                        </p>
                         {sculpture.year && (
                             <p>
                                 <span className="text-black font-sans"></span> {sculpture.year}
                             </p>
                         )}
-                        {sculpture.number && (
+                        {sculpture.style && (
                             <p>
-                                <span className="text-black font-sans"></span> {sculpture.number}
+                                <span className="text-black font-sans"></span> {sculpture.style}
                             </p>
                         )}
                         {sculpture.description && (
