@@ -7,7 +7,6 @@ import supabase from '@/utils/supabaseClient'
 import Loader from '@/components/Admin/Loader'
 import { SculptureDB } from '@/types/artwork'
 
-// Локальний тип для галереї - зробити year опціональним
 interface GalleryArtwork {
     id: string
     title: string
@@ -16,7 +15,7 @@ interface GalleryArtwork {
     author?: string
     style?: string
     number?: string
-    year?: number // Змінити на опціональне
+    year?: number
 }
 
 const GalleryPage: React.FC = () => {
@@ -24,10 +23,36 @@ const GalleryPage: React.FC = () => {
     const [filteredArtworks, setFilteredArtworks] = useState<GalleryArtwork[]>([])
     const [searchTerm, setSearchTerm] = useState('')
     const [loading, setLoading] = useState(true)
+    const [hasRestoredScroll, setHasRestoredScroll] = useState(false)
+
+    // Плавна функція скролу
+    const smoothScrollTo = (position: number, duration: number = 800) => {
+        const start = window.pageYOffset
+        const distance = position - start
+        let startTime: number | null = null
+
+        const animation = (currentTime: number) => {
+            if (startTime === null) startTime = currentTime
+            const timeElapsed = currentTime - startTime
+            const progress = Math.min(timeElapsed / duration, 1)
+
+            // easing function для плавності
+            const easeInOut = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+            window.scrollTo(0, start + (distance * easeInOut))
+
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animation)
+            }
+        }
+
+        requestAnimationFrame(animation)
+    }
 
     useEffect(() => {
         const fetchArtworks = async () => {
-            // Додати year до запиту
             const { data, error } = await supabase
                 .from('sculptures')
                 .select('id, name, description, image_urls, author, style, number, year, created_at')
@@ -42,7 +67,7 @@ const GalleryPage: React.FC = () => {
                     author: item.author,
                     style: item.style,
                     number: item.number,
-                    year: item.year // Тепер це number | undefined
+                    year: item.year
                 }))
                 setArtworks(mapped)
                 setFilteredArtworks(mapped)
@@ -53,6 +78,23 @@ const GalleryPage: React.FC = () => {
 
         fetchArtworks()
     }, [])
+
+    // Відновлюємо позицію прокрутки після завантаження даних
+    useEffect(() => {
+        if (!loading && !hasRestoredScroll) {
+            const savedPosition = sessionStorage.getItem('galleryScrollPosition')
+            if (savedPosition) {
+                // Чекаємо трохи щоб DOM повністю оновився
+                setTimeout(() => {
+                    smoothScrollTo(parseInt(savedPosition), 1000) // 1000ms = 1 секунда
+                    sessionStorage.removeItem('galleryScrollPosition')
+                    setHasRestoredScroll(true)
+                }, 300) // Невелика затримка перед початком анімації
+            } else {
+                setHasRestoredScroll(true)
+            }
+        }
+    }, [loading, hasRestoredScroll])
 
     // Фільтрація за номером
     useEffect(() => {

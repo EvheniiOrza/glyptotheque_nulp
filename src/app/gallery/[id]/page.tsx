@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Layout from '@/components/layout/Layout'
 import supabase from '@/utils/supabaseClient'
 import Loader from '@/components/Admin/Loader'
@@ -12,9 +12,9 @@ interface SculptureDetail {
     id: string
     name: string
     author: string
-    style?: string // Додаємо стиль
+    style?: string
     year: number
-    number?: string // Додаємо номер
+    number?: string
     description?: string
     image_urls: string[]
     created_at: string
@@ -22,6 +22,7 @@ interface SculptureDetail {
 
 const SculptureDetailPage: React.FC = () => {
     const { id } = useParams()
+    const router = useRouter()
     const [sculpture, setSculpture] = useState<SculptureDetail | null>(null)
     const [loading, setLoading] = useState(true)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -41,6 +42,10 @@ const SculptureDetailPage: React.FC = () => {
 
         if (id) fetchSculpture()
     }, [id])
+
+    const handleBack = () => {
+        router.push('/gallery')
+    }
 
     if (loading) {
         return (
@@ -65,6 +70,19 @@ const SculptureDetailPage: React.FC = () => {
     return (
         <Layout>
             <main className="bg-gray-100 text-black min-h-screen py-16 px-6 md:px-12">
+                {/* Кнопка назад */}
+                <div className="max-w-6xl mx-auto mb-8">
+                    <button
+                        onClick={handleBack}
+                        className="flex items-center text-gray-600 hover:text-black transition-colors duration-200 text-lg font-sans mb-8"
+                    >
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Назад до галереї
+                    </button>
+                </div>
+
                 <h1 className="text-4xl md:text-5xl font-sans text-black text-center mb-12">
                     {sculpture.name}
                 </h1>

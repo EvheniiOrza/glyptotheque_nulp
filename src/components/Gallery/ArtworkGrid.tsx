@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import ArtworkCard from './ArtworkCard'
 
 interface Artwork {
-    id: string // Змінено на string
+    id: string
     title: string
     description: string
     imageUrl: string
@@ -23,20 +23,19 @@ const ArtworkGrid: React.FC<ArtworkGridProps> = ({ artworks }) => {
     const router = useRouter()
 
     const handleArtworkClick = (artwork: Artwork) => {
+        // ДОДАНО: Зберігаємо позицію прокрутки перед переходом
+        sessionStorage.setItem('galleryScrollPosition', window.scrollY.toString())
         router.push(`/gallery/${artwork.id}`)
     }
 
     // Сортування за полем number
     const sortedArtworks = [...artworks].sort((a, b) => {
-        // Якщо number відсутній, розміщуємо в кінці
         if (!a.number) return 1
         if (!b.number) return -1
 
-        // Конвертуємо в числа для порівняння
         const numA = parseInt(a.number, 10)
         const numB = parseInt(b.number, 10)
 
-        // Якщо конвертація не вдалась, порівнюємо як рядки
         if (isNaN(numA) || isNaN(numB)) {
             return a.number.localeCompare(b.number)
         }
