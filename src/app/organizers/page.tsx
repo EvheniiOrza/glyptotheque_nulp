@@ -164,6 +164,129 @@ const OrganizersPage: React.FC = () => {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Команда організаторів */}
+                        <div className="bg-gray-50 rounded-none p-8">
+                            <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Команда організаторів</h3>
+
+                            <div className="space-y-8">
+                                {/* Основна команда */}
+                                <div>
+                                    <h4 className="text-lg font-semibold text-gray-700 mb-4">Команда «Гліптотеки»</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Куратор — Павло Гудімов</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Ректорка — Наталія Шаховська</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Консультанти — Олег Рибчинський, Микола Бевз</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Тексти — Діана Клочко, Павло Гудімов</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Дизайн — Катерина Большакова</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Експозиція — Павло Гудімов, Анна Годун, Інна Непран, Єлизавета Селіванова, Ольга Слинько, Стас Бриль та студенти Львівської політехніки</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Менеджмент — Ігор Гельжинський, Микола Логойда, Наталія Мельникова</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Комунікація – Софія Диба</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Технічне забезпечення — Володимир Пашкевич, Ігор Курилець</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Інфо-ресурси — Наталія Павлишин, Євгеній Орза, Богдан Павлик, Аня Савчук, Віта Мостова</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Маркетинг простору — Оксана Гордійчук</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Команда Львівської міської ради */}
+                                <div>
+                                    <h4 className="text-lg font-semibold text-gray-700 mb-4">Команда Львівської міської ради</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Ірина Кулинич — заступниця міського голови з гуманітарних питань</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">в.о. заступника міського голови</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Антон Коломєйцев — головний архітектор міста</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Марта Бешлей — начальниця управління культури</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Андрій Заколюк — начальник департаменту освіти та культури</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Олеся Мандзюк — заступниця директора департаменту, начальниця управління розвитку освіти</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Олексій Тарабан — департамент освіти та культури</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Команда Львівської обласної військової адміністрації */}
+                                <div>
+                                    <h4 className="text-lg font-semibold text-gray-700 mb-4">Команда Львівської обласної військової адміністрації</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Ірина Гаврилюк — директорка департаменту культури</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Володимир Корда — директор департаменту екології та природних ресурсів</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Команда Львівської політехніки */}
+                                <div>
+                                    <h4 className="text-lg font-semibold text-gray-700 mb-4">Команда Львівської політехніки</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Ректорка — Наталія Шаховська</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Менеджмент простору — Ігор Гельжинський, Микола Логойда, Наталія Мельникова</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Технічне забезпечення — Володимир Пашкевич, Ігор Курилець</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Інфо-ресурси — Наталія Павлишин, Євгеній Орза, Богдан Павлик, Аня Савчук, Віта Мостова</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Патронат */}
+                                <div>
+                                    <h4 className="text-lg font-semibold text-gray-700 mb-4">Патронат</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Андрій Садовий — міський голова Львова</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Максим Козицький — голова Львівської обласної військової адміністрації</span>
+                                        </div>
+                                        <div className="text-center py-2 px-3 bg-[#ffff] rounded-none shadow-sm border border-gray-200">
+                                            <span className="text-gray-700">Наталія Шаховська — ректорка Національного університету «Львівська політехніка»</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </motion.div>
 
                     <motion.div

@@ -55,10 +55,11 @@ const GalleryPage: React.FC = () => {
         const fetchArtworks = async () => {
             const { data, error } = await supabase
                 .from('sculptures')
-                .select('id, name, description, image_urls, author, style, number, year, created_at')
+                .select('id, name, description, image_urls, author, style, number, year, created_at, space_id') // ← ДОДАНО space_id
 
             if (error) console.error(error)
             else if (data) {
+                console.log('Fetched artworks with space_id:', data) // Додайте для дебагу
                 const mapped = data.map((item: SculptureDB) => ({
                     id: item.id,
                     title: item.name,
@@ -67,7 +68,8 @@ const GalleryPage: React.FC = () => {
                     author: item.author,
                     style: item.style,
                     number: item.number,
-                    year: item.year
+                    year: item.year,
+                    space_id: item.space_id // ← ДОДАНО передачу space_id
                 }))
                 setArtworks(mapped)
                 setFilteredArtworks(mapped)
